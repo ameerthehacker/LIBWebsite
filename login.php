@@ -18,7 +18,11 @@
         <?php
         session_start();
         require_once('include/login.inc.php');
-        require_once('include/core.inc.php');			
+        require_once('include/core.inc.php');		
+        if(isset($_SESSION['user'])){
+             header('refresh:0;admin.php'); 
+             exit();
+        }	
         if(isset($_POST['submit'])){
             $username=$_POST['username'];
             $password=$_POST['password'];
