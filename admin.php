@@ -17,12 +17,20 @@ if(!isset($_SESSION['user'])){
         <!--CSS-->
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
         <link href="css/jquery.dialog.css" type="text/css" rel="stylesheet"/>
+        <link href="css/jquery.dataTables.min.css" type="text/css" rel="stylesheet"/>
+        <link href="css/dataTables.bootstrap.min.css" type="text/css" rel="stylesheet"/>
+        <link href="css/jquery-ui.min.css" type="text/css" rel="stylesheet"/>                
+        <link href="css/admin.css" type="text/css" rel="stylesheet"/>        
+            
         
         <!--Javascript-->
         <script src="scripts/js/jquery.min.js" type="text/javascript"></script>
         <script src="scripts/js/bootstrap.min.js" type="text/javascript"></script>                        
         <script src="scripts/js/jquery.dialog.js" type="text/javascript"></script> 
-        <script src="scripts/js/jquery.form.js" type="text/javascript"></script>     
+        <script src="scripts/js/jquery.form.js" type="text/javascript"></script>
+        <script src="scripts/js/jquery.datatables.min.js" type="text/javascript"></script>     
+        <script src="scripts/js/dataTables.bootstrap.min.js" type="text/javascript"></script>    
+        <script src="scripts/js/jquery-ui.min.js" type="text/javascript"></script>                                        
         <script src="scripts/js/admin.js" type="text/javascript"></script>              
              
     </head>
@@ -73,8 +81,194 @@ if(!isset($_SESSION['user'])){
                 </div>
             </div>
         </div>
+        <!--Tab Contents-->
+        
+        
+        <div class="container-fluid">
+            <div id="admin-tabs">
+                <ul>
+                    <li>
+                        <a href="#books">Books</a>
+                    </li>
+                    <li>
+                        <a href="#users">Users</a>
+                    </li>
+                </ul>
+                <div id="books">
+                    <form class="form-inline pull-right" onsubmit="return false">
+                        <div class="form-group">
+                            <div class="col-lg-2">
+                                <button id="btn-books-delete" class="btn btn-danger form-control">Delete</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-2">
+                                <button id="btn-books-selectall" class="btn btn-primary form-control">Select All</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-2">
+                                <button id="btn-books-invert" class="btn btn-primary form-control">Invert</button>
+                            </div>
+                        </div>
+                    </form>
+                    <?php 
+                   
+                    require_once('include/table.inc.php');
+                    
+                    $books=new CTable('libbooks','libbooks');
+                    $sql="SELECT bookname,id,author,IFNULL(publication,'N/A'),price FROM libbooks";
+                    $html=$books->drawTable(array('#','Book Name','Book ID','Author','Publisher','Price'),true,$sql);
+                    echo($html);
+                    ?>
+                </div>
+                <div id="users">
+                   <form class="form-inline pull-right" onsubmit="return false">
+                        <div class="form-group">
+                            <div class="col-lg-2">
+                                <button id="btn-users-delete" class="btn btn-danger form-control">Delete</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-2">
+                                <button id="btn-users-selectall" class="btn btn-primary form-control">Select All</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-2">
+                                <button id="btn-users-invert" class="btn btn-primary form-control">Invert</button>
+                            </div>
+                        </div>
+                    </form>
+                    <?php 
+                   
+                    require_once('include/table.inc.php');
+                    
+                    $books=new CTable('libusers','libusers');
+                    $html=$books->drawTable(array('#','Username','User ID','Department','Category'),true);
+                    echo($html);
+                    ?>
+                </div>
+            </div>            
+        </div>
         
         <!--Modals For the page-->
+        
+        <!--Modal for editing users-->
+        <div class="modal fade" id="modal-users-update">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edit User</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-users-update" class="form-horizontal" method="post" action="scripts/php/users/update.php">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Username</label>
+                                <div class="col-lg-10">
+                                    <input type="text" id="username" class="form-control" name="username" placeholder="Name of the user"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">User ID</label>
+                                <div class="col-lg-10">
+                                    <input type="text" id="userid" class="form-control" name="userid" placeholder="Unique ID of the user"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Department</label>                                    
+                                <div class="col-lg-10">
+                                    <select id="dept" class="form-control" name="dept">
+                                        <option value="BIOTECH">BIOTECH</option>
+                                        <option value="CIVIL">CIVIL</option>
+                                        <option value="CSE">CSE</option>
+                                        <option value="EEE">EEE</option>
+                                        <option value="EEE">ECE</option>
+                                        <option value="IT">IT</option>
+                                        <option value="MECH">MECHANICAL</option>
+                                        <option value="MATHS">MATHS</option>
+                                        <option value="PHYSICS">PHYSICS</option>
+                                        <option value="CHEMISTRY">CHEMISTRY</option>
+                                        <option value="ENGLISH">ENGLISH</option>
+                                        <option value="MBA">MBA</option>
+                                        <option value="MCA">MCA</option>
+                                        <option value="PHY-EDU">PHY-EDU</option>
+                                        <option value="OTHERS">OTHERS</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Category</label>                                    
+                                <div class="col-lg-10">
+                                    <select id="category" class="form-control" name="category">
+                                        <option value="STUDENT">STUDENT</option>
+                                        <option value="FACULTY">FACULTY</option>
+                                        <option value="STAFF">STAFF</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn-users-update" class="btn btn-success">Update</button>
+                        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--Modal for editing books-->
+        <div class="modal fade" id="modal-books-update">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edit Book</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-books-update" class="form-horizontal" method="post" action="scripts/php/books/update.php">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Book Name</label>
+                                <div class="col-lg-10">
+                                    <input id="bookname" type="text" name="bookname" placeholder="Name of the book" class="form-control"/>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label class="col-lg-2 control-label">Book ID</label>
+                                <div class="col-lg-10">
+                                    <input id="bookid" type="text" name="bookid" placeholder="Unique ID of the book" class="form-control"/>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label class="col-lg-2 control-label">Author</label>
+                                <div class="col-lg-10">
+                                    <input id="author" type="text" name="author" placeholder="Name of the author" class="form-control"/>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label class="col-lg-2 control-label">Publication</label>
+                                <div class="col-lg-10">
+                                    <input id="publication" type="text" name="publication" placeholder="Name of the publisher" class="form-control"/>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label class="col-lg-2 control-label">Price</label>
+                                <div class="col-lg-10">
+                                    <input id="price" type="text" name="price" placeholder="Price of the book" class="form-control"/>
+                                </div>
+                            </div>
+                        </form>                        
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn-books-update" class="btn btn-success">Update</button>
+                        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--Modal for adding users-->
         <div class="modal fade" id="modal-users-add">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -137,6 +331,8 @@ if(!isset($_SESSION['user'])){
                 </div>
             </div>
         </div>
+        
+        <!--Modal for adding books-->        
         <div class="modal fade" id="modal-books-add">
             <div class="modal-dialog">
                 <div class="modal-content">

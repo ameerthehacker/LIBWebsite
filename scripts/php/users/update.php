@@ -4,22 +4,16 @@ session_start();
 require_once('../../../include/connect.inc.php');
 
 if(isset($_SESSION['user'])){
-    foreach ($_POST as $key=>$val) {
-      if($val=="" && $key!='publication'){
+    foreach ($_POST as $val) {
+      if($val==""){
           $response=['title'=>'Sorry!','message'=>'Make sure you fill all the fields','style'=>'error','location'=>'tc'];
           echo(json_encode($response));
           exit();
       }
     }
-    if($_POST['publication']==""){
-        $sql="INSERT INTO libbooks VALUES('$_POST[bookname]','$_POST[bookid]','$_POST[author]',null,'$_POST[price]')";        
-    }
-    else{
-        $sql="INSERT INTO libbooks VALUES('$_POST[bookname]','$_POST[bookid]','$_POST[author]','$_POST[publication]','$_POST[price]')";
-    }
-    
+    $sql="update libusers SET username='$_POST[username]',id='$_POST[userid]',dept='$_POST[dept]',category='$_POST[category]' WHERE id='$_POST[id]'";
     if(mysql_query($sql)){
-         $response=['title'=>'Done!','message'=>'The book was added','style'=>'notice','location'=>'tc'];        
+         $response=['title'=>'Done!','message'=>'The user was updated','style'=>'notice','location'=>'tc'];        
     }
     else{
         $response=['title'=>'Error','message'=>mysql_error(),'style'=>'error','location'=>'tc'];   
