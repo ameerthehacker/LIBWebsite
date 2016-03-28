@@ -1,9 +1,16 @@
 $(function(){
+    
+    var ajaxError={title:"Internal Error!",message:'Unable to perform a ajax request',style:'error',location:'tc'};
+    
     var formUsersAdd=$("#form-users-add");
     var formBooksAdd=$("#form-books-add");
     var formUsersUpdate=$("#form-users-update");
     var formBooksUpdate=$("#form-books-update");
+    var formUsersCSV=$("#form-users-csv");
     
+    var fileUsersCSV=$("#file-users-csv");
+    
+    var labelUsersCSV=$("#label-users-csv");
     
     var btnBooksAdd=$("#btn-books-add");
     var btnBooksDelete=$("#btn-books-delete");
@@ -11,7 +18,9 @@ $(function(){
     var btnBooksInvert=$("#btn-books-invert");
     var btnBooksUpdate=$("#btn-books-update");
     
-    var btnUsersAdd=$("#btn-users-add");    
+    var btnUsersAdd=$("#btn-users-add");
+    var btnUsersBrowseCSV=$("#btn-users-browse-csv"); 
+    var btnUsersCSV=$("#btn-users-csv");   
     var btnUsersDelete=$("#btn-users-delete");
     var btnUsersSelectAll=$("#btn-users-selectall");
     var btnUsersInvert=$("#btn-users-invert");
@@ -42,7 +51,24 @@ $(function(){
     formUsersAdd.ajaxForm();
     formBooksAdd.ajaxForm();
     formUsersUpdate.ajaxForm();
+    formUsersCSV.ajaxForm();
     
+    btnUsersBrowseCSV.on('click',function(evt){
+       fileUsersCSV.trigger('click'); 
+    });  
+    
+    fileUsersCSV.on('change',function(evt){
+       labelUsersCSV.text(fileUsersCSV[0].files[0].name);
+    });
+    
+    btnUsersCSV.on('click',function(evt){
+       formUsersCSV.ajaxSubmit({success:function(response){
+           response=jQuery.parseJSON(response);
+           $.growl(response);                       
+       },error:function(){
+           $.growl(ajaxError);                       
+       }}); 
+    });
     
     libUsersRow.on('dblclick',function(evt){
         var fields=[];
@@ -162,7 +188,7 @@ $(function(){
                 },2000);
             }
        },error:function(){
-           $.growl({title:"Internal Error!",message:'Unable to perform a ajax request',style:'error',location:'tc'});            
+           $.growl(ajaxError);            
        }});
     });
     

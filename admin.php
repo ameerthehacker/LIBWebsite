@@ -323,6 +323,21 @@ if(!isset($_SESSION['user'])){
                                 </div>
                             </div>
                         </form>
+                        <form id="form-users-csv" class="form-horizontal" method="post" action="scripts/php/users/csv.php" enctype="multipart/form-data">
+                            <input id="file-users-csv" style="display:none;visiblity:hidden" type="file" name="csv"/>
+                            <div class="form-group">
+                                <label class="col-lg-12 text-center">Import From CSV</label>                                  
+                            </div>
+                            <div class="form-group">
+                                <label id="label-users-csv" class="col-lg-8 control-label">Choose a file ...</label>
+                                <div class="col-lg-2">
+                                    <button id="btn-users-browse-csv" class="btn btn-primary form-control">Browse</button>
+                                </div>
+                                <div class="col-lg-2">
+                                    <button id="btn-users-csv" class="btn btn-success form-control">Submit</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button id="btn-users-add" class="btn btn-success">Add</button>
@@ -382,4 +397,4 @@ if(!isset($_SESSION['user'])){
             </div>
         </div>
     </body>
-</htm>
+</html>
