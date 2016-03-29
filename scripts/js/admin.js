@@ -7,16 +7,20 @@ $(function(){
     var formUsersUpdate=$("#form-users-update");
     var formBooksUpdate=$("#form-books-update");
     var formUsersCSV=$("#form-users-csv");
+    var formBooksIssue=$("#form-books-issue");
     
     var fileUsersCSV=$("#file-users-csv");
     
     var labelUsersCSV=$("#label-users-csv");
+    
+    var textBooksIssueDate=$("#text-books-issue-date");
     
     var btnBooksAdd=$("#btn-books-add");
     var btnBooksDelete=$("#btn-books-delete");
     var btnBooksSelectAll=$("#btn-books-selectall");
     var btnBooksInvert=$("#btn-books-invert");
     var btnBooksUpdate=$("#btn-books-update");
+    var btnBooksIssue=$("#btn-books-issue");
     
     var btnUsersAdd=$("#btn-users-add");
     var btnUsersBrowseCSV=$("#btn-users-browse-csv"); 
@@ -52,6 +56,17 @@ $(function(){
     formBooksAdd.ajaxForm();
     formUsersUpdate.ajaxForm();
     formUsersCSV.ajaxForm();
+    formBooksIssue.ajaxForm();
+    
+    
+    
+    textBooksIssueDate.datepicker({
+        dateFormat:'yy-mm-dd'
+    });
+    
+    textBooksIssueDate.on('keypress',function(evt){
+       evt.preventDefault(); 
+    });
     
     btnUsersBrowseCSV.on('click',function(evt){
        fileUsersCSV.trigger('click'); 
@@ -59,6 +74,16 @@ $(function(){
     
     fileUsersCSV.on('change',function(evt){
        labelUsersCSV.text(fileUsersCSV[0].files[0].name);
+    });
+    
+    btnBooksIssue.on('click',function(evt){
+       formBooksIssue.ajaxSubmit({
+           success:function(response){
+               response=jQuery.parseJSON(response);
+               $.growl(response);
+           },error:function(){
+               $.growl(ajaxError);       
+        }});
     });
     
     btnUsersCSV.on('click',function(evt){

@@ -57,6 +57,7 @@ if(!isset($_SESSION['user'])){
                             <a role="button" class="dropdown-toggle" data-toggle="dropdown">Books <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a role="button" href="#" data-toggle="modal" data-target="#modal-books-add">New Book</a></li>
+                                <li><a role="button" href="#" data-toggle="modal" data-target="#modal-books-issue">Issue Book</a></li>                                
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -153,6 +154,54 @@ if(!isset($_SESSION['user'])){
         </div>
         
         <!--Modals For the page-->
+        
+        <!--Modal for issuing the book-->
+        <div class="modal fade" id="modal-books-issue">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>                        
+                        <h4 class="modal-title">Issue a Book</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-books-issue" class="form-horizontal" method="post" action="scripts/php/books/issue.php">
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">User ID</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" name="userid" placeholder="Unique ID of the user" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">Book ID</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" name="bookid" placeholder="Unique ID of the book" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-12 text-center">Date Of Issue</label>
+                            </div>
+                            <div class="radio">
+                                <label class="control-label col-lg-2">
+                                    <input type="radio" checked="true" name="issuedate" value="today"/>
+                                    Today
+                                </label>
+                                <label class="control-label col-lg-2">
+                                    <input type="radio" name="issuedate" value="other"/>
+                                    Other
+                                </label>
+                                <div class="col-lg-8">
+                                    <input type="text" id="text-books-issue-date" class="form-control" name="dateofissue" placeholder="Date of issue"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn-books-issue" class="btn btn-success">Issue</button>
+                        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>                        
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <!--Modal for editing users-->
         <div class="modal fade" id="modal-users-update">
