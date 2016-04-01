@@ -8,6 +8,7 @@ $(function(){
     var formBooksUpdate=$("#form-books-update");
     var formUsersCSV=$("#form-users-csv");
     var formBooksIssue=$("#form-books-issue");
+    var formBooksReturn=$("#form-books-return");
     
     var fileUsersCSV=$("#file-users-csv");
     
@@ -21,6 +22,8 @@ $(function(){
     var btnBooksInvert=$("#btn-books-invert");
     var btnBooksUpdate=$("#btn-books-update");
     var btnBooksIssue=$("#btn-books-issue");
+    var btnBooksReturn=$("#btn-books-return");
+    var btnBooksRenew=$("#btn-books-renew");    
     
     var btnUsersAdd=$("#btn-users-add");
     var btnUsersBrowseCSV=$("#btn-users-browse-csv"); 
@@ -57,7 +60,7 @@ $(function(){
     formUsersUpdate.ajaxForm();
     formUsersCSV.ajaxForm();
     formBooksIssue.ajaxForm();
-    
+    formBooksReturn.ajaxForm();
     
     
     textBooksIssueDate.datepicker({
@@ -66,6 +69,28 @@ $(function(){
     
     textBooksIssueDate.on('keypress',function(evt){
        evt.preventDefault(); 
+    });
+    
+    btnBooksRenew.on('click',function(evt){
+       formBooksReturn.ajaxSubmit({
+           url:'scripts/php/books/renew.php',           
+           success:function(response){
+           response=jQuery.parseJSON(response);
+           $.growl(response);
+       },error:function(){
+           $.growl(ajaxError);
+       }});
+    });
+    
+    btnBooksReturn.on('click',function(evt){
+       formBooksReturn.ajaxSubmit({
+           url:'scripts/php/books/return.php',           
+           success:function(response){               
+           response=jQuery.parseJSON(response);
+           $.growl(response);
+       },error:function(){
+           $.growl(ajaxError);
+       }});
     });
     
     btnUsersBrowseCSV.on('click',function(evt){

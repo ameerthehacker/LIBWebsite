@@ -36,7 +36,7 @@ if(isset($_SESSION['user'])){
                 $duedate = date('Y-m-d', strtotime($date . " +30 days"));
             }
             else{
-                $duedate = date('Y-m-d', strtotime($date . " +1 days"));                
+                $duedate = date('Y-m-d', strtotime($date . " +180 days"));                
             }
             
             if(date('N', strtotime($duedate)) == 6){

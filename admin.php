@@ -57,7 +57,8 @@ if(!isset($_SESSION['user'])){
                             <a role="button" class="dropdown-toggle" data-toggle="dropdown">Books <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a role="button" href="#" data-toggle="modal" data-target="#modal-books-add">New Book</a></li>
-                                <li><a role="button" href="#" data-toggle="modal" data-target="#modal-books-issue">Issue Book</a></li>                                
+                                <li><a role="button" href="#" data-toggle="modal" data-target="#modal-books-issue">Issue Book</a></li>
+                                <li><a role="button" href="#" data-toggle="modal" data-target="#modal-books-return">Return/Renew Book</a></li>                                                                                                
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -154,6 +155,7 @@ if(!isset($_SESSION['user'])){
         </div>
         
         <!--Modals For the page-->
+        
         
         <!--Modal for issuing the book-->
         <div class="modal fade" id="modal-books-issue">
@@ -444,6 +446,33 @@ if(!isset($_SESSION['user'])){
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <!--Modal For returning the book-->
+        <div id="modal-books-return"  class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Return Book</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-books-return" method="post"  class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">Book ID</label>
+                                <div class="col-lg-10">
+                                    <input class="form-control" type="text" placeholder="Unique ID of the book..." name="bookid"/>
+                                </div>
+                            </div>                            
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn-books-renew" class="btn btn-success">Renew</button>                        
+                        <button id="btn-books-return" class="btn btn-success">Return</button>
+                        <button data-dismiss="modal" class="btn btn-danger">Cancel</button>                        
+                    </div>
+                </div>
+            <div>
         </div>
     </body>
 </html>
