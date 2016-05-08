@@ -170,14 +170,39 @@ if(!isset($_SESSION['user'])){
                             <div class="form-group">
                                 <label class="control-label col-lg-2">User ID</label>
                                 <div class="col-lg-10">
-                                    <input type="text" class="form-control" name="userid" placeholder="Unique ID of the user" />
+                                    <input id="text-users-issue-id" type="text" class="form-control" name="userid" placeholder="Unique ID of the user" />
                                 </div>
+                            </div>
+                            <div id="div-users-details" class="form-group" style="display:none;visibility:hidden;">
+                               <div class="col-lg-12">
+                                    <table class="table">
+                                        <tr>
+                                            <td id="d-username"><td>
+                                            <td id="d-userid"><td>
+                                            <td id="d-department"><td>
+                                            <td id="d-category"><td>                                            
+                                        </tr>
+                                    </table>
+                               </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-lg-2">Book ID</label>
                                 <div class="col-lg-10">
-                                    <input type="text" class="form-control" name="bookid" placeholder="Unique ID of the book" />
+                                    <input type="text" id="text-books-issue-id" class="form-control" name="bookid" placeholder="Unique ID of the book" />
                                 </div>
+                            </div>
+                            <!--div for book details-->
+                            <div id="div-books-details" class="form-group" style="display:none;visibility:hidden;">
+                               <div class="col-lg-12">
+                                    <table class="table">
+                                        <tr>
+                                            <td id="d-bookname"><td>
+                                            <td id="d-author"><td>
+                                            <td id="d-publication"><td>
+                                            <td id="d-price"><td>                                            
+                                        </tr>
+                                    </table>
+                               </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-12 text-center">Date Of Issue</label>

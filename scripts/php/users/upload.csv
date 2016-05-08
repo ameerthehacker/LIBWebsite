@@ -1,35 +1,270 @@
-Dr.K.Muneeswaran,96csets010,FACULTY,CSE
-Dr.Kannan Balasubramanian,05csets022,FACULTY,CSE
-Dr.K.Mala,02csets015,FACULTY,CSE
-Ms.P.Golda Jeyasheeli,90csets006,FACULTY,CSE
-Mr.J.Raja Sekar,02mcats004,FACULTY,CSE
-Mrs.S.Devi Mahalakshmi,98csets010,FACULTY,CSE
-Mrs.S.Vanitha Sivagami,98csets018,FACULTY,CSE
-Mrs.M.S.Bhuvaneswari,06csets014,FACULTY,CSE
-Mr.K.Thirumoorthy,08csets018,FACULTY,CSE
-Mr.N.Balaganesh,09itts0051,FACULTY,CSE
-Mr.C.Balasubramanian,09csets048,FACULTY,CSE
-Mr.M.Arun,08csets019,FACULTY,CSE
-Mrs.R.Beaulah Jeyavathana  ,08csets034,FACULTY,CSE
-Mr.M.Rajakani,09csets064,FACULTY,CSE
-Mr.P.Vinoth ,10csets017,FACULTY,CSE
-Mr.B.Lakshmanan ,10csets018,FACULTY,CSE
-Mrs.S.Amutha ,10csets008,FACULTY,CSE
-Mrs.G.Ananthi ,10csets009,FACULTY,CSE
-Mrs.S.Priyadharsini,10csets033,FACULTY,CSE
-Mr.S.Thavasi ,12csets009,FACULTY,CSE
-Ms.M.Nagajothi ,12csets010,FACULTY,CSE
-Ms.G.Priyanka,13csets013,FACULTY,CSE
-Mrs.S.Santhi,13csets014,FACULTY,CSE
-Ms.T.Jenitha,13csets016,FACULTY,CSE
-Mr.N.Umakanth,13csets015,FACULTY,CSE
-Ms.B.Anusha,14csets008,FACULTY,CSE
-Mr.M.Sathyabhaarathy,88csens003,STAFF,CSE
-Mr.K.Jeyaraman,02csens001,STAFF,CSE
-Mr.P.Rajkiran,12csens007,STAFF,CSE
-Mr.S.Arunkumar,12csens009,STAFF,CSE
-Mr. P.Ganesan,13csens019,STAFF,CSE
-Mr.S.T.Vignesh Kumar,13csens020,STAFF,CSE
-Mr.S.Jothiraj,13csens023,STAFF,CSE
-Mr.E.Kalirajan,14csens026,STAFF,CSE
-S.Balamurugan,09csens015,STAFF,CSE
+Aarthy B,13BCS001,Student,CSE
+Anjana A,13BCS002,Student,CSE
+Bala Sugirtha K,13BCS003,Student,CSE
+Christy New Jerusha S,13BCS004,Student,CSE
+Gandhimathi P,13BCS005,Student,CSE
+Gayathri N,13BCS006,Student,CSE
+Gowsalya D,13BCS007,Student,CSE
+Iswarya A M,13BCS008,Student,CSE
+Janani B,13BCS009,Student,CSE
+Joselin Sushma J,13BCS010,Student,CSE
+Kanagajothi K,13BCS011,Student,CSE
+Keerthana R S,13BCS012,Student,CSE
+Malliga M,13BCS013,Student,CSE
+Meena S,13BCS014,Student,CSE
+Muthuselvi S,13BCS015,Student,CSE
+Nagajothi M,13BCS016,Student,CSE
+Nisha V,13BCS017,Student,CSE
+Nithya S,13BCS018,Student,CSE
+Nivetha A,13BCS019,Student,CSE
+Padma S,13BCS020,Student,CSE
+Pavithra R,13BCS021,Student,CSE
+Poornamathi S,13BCS022,Student,CSE
+Preethi Anisha P,13BCS023,Student,CSE
+Priyadharsini N,13BCS024,Student,CSE
+Shanmuga Priya S,13BCS025,Student,CSE
+Sorna Lalitha S,13BCS026,Student,CSE
+Sornaprema M,13BCS027,Student,CSE
+Sudha Priya S,13BCS028,Student,CSE
+Suganthi S S,13BCS029,Student,CSE
+Vasantha M,13BCS030,Student,CSE
+Abdul Kather Ibrahim I,13BCS031,Student,CSE
+Arjun Muthiah M,13BCS032,Student,CSE
+Balaji N,13BCS033,Student,CSE
+Dhanraaj Chithan R,13BCS034,Student,CSE
+Hari Shankar R,13BCS035,Student,CSE
+Karthik Kumar J,13BCS036,Student,CSE
+Maharajan T,13BCS037,Student,CSE
+Maroj Kannaa S,13BCS038,Student,CSE
+Vinith T,13BCS039,Student,CSE
+Suruthi D,13BCSL06,Student,CSE
+Dineshkumar C,13BCSL08,Student,CSE
+Gowtham V,13BCSL10,Student,CSE
+Mohamed Sabiur Rahman S,13BCSL13,Student,CSE
+Muraleedharan N,13BCSL14,Student,CSE
+Veerappan V,13BCSL20,Student,CSE
+Venkatesh J,13BCSL21,Student,CSE
+Vignesh R,13BCSL22,Student,CSE
+Abarna S,13BCS040,Student,CSE
+Abhi Roopa VK,13BCS041,Student,CSE
+Akshaya N,13BCS042,Student,CSE
+Amrithaa D,13BCS043,Student,CSE
+Anisha V P,13BCS044,Student,CSE
+Annie Vinisha J,13BCS045,Student,CSE
+Anushree C,13BCS046,Student,CSE
+Bethu Dharani M,13BCS047,Student,CSE
+Dharani A,13BCS048,Student,CSE
+Divya Praisy S,13BCS049,Student,CSE
+Esakkiammal S,13BCS051,Student,CSE
+Jeyavani B,13BCS052,Student,CSE
+Kanaga G,13BCS053,Student,CSE
+Karthiga Devi R,13BCS054,Student,CSE
+Kaviya B,13BCS055,Student,CSE
+Meihaindhi A G,13BCS056,Student,CSE
+Nanthini N,13BCS057,Student,CSE
+Raksha K C,13BCS058,Student,CSE
+Priya Varshini G,13BCS059,Student,CSE
+Priyanka K,13BCS060,Student,CSE
+Rashmi S,13BCS061,Student,CSE
+Rishma R,13BCS062,Student,CSE
+Seethalakshmi R,13BCS063,Student,CSE
+Shiny Mahima K,13BCS064,Student,CSE
+Shiny Thangamary G,13BCS065,Student,CSE
+Soundaravadivoo S,13BCS066,Student,CSE
+Udayasankari S,13BCS067,Student,CSE
+Vigneshwari R,13BCS068,Student,CSE
+Vijayalakshmi M,13BCS069,Student,CSE
+Vijayalakshmi R,13BCS070,Student,CSE
+Balasubramanian S,13BCS071,Student,CSE
+Dharun Surath K S,13BCS072,Student,CSE
+Govarthanan R,13BCS073,Student,CSE
+Muthu Raman M,13BCS074,Student,CSE
+Naganathan Arjun M S,13BCS075,Student,CSE
+Palpandi A,13BCS076,Student,CSE
+Rajesh G,13BCS077,Student,CSE
+Vijay R,13BCS078,Student,CSE
+Arimarieswari G,13BCSL01,Student,CSE
+Hemapriya K,13BCSL02,Student,CSE
+Lavanya M,13BCSL03,Student,CSE
+Shanmugapriya A,13BCSL04,Student,CSE
+Balamurugan M,13BCSL07,Student,CSE
+Mayamuthukrishnan M,13BCSL11,Student,CSE
+Mohamed Gani S,13BCSL12,Student,CSE
+Abarna S,13BCS079,Student,CSE
+Abinaya Vasuki K,13BCS080,Student,CSE
+Divya J,13BCS081,Student,CSE
+Durgadevi P,13BCS082,Student,CSE
+Durgadevi S,13BCS083,Student,CSE
+Gomathi G,13BCS084,Student,CSE
+Hari Priya S,13BCS085,Student,CSE
+Infanta Jenifer R,13BCS086,Student,CSE
+Jayasree P,13BCS087,Student,CSE
+Jeyashree E,13BCS088,Student,CSE
+Kaarthikaa M,13BCS089,Student,CSE
+Kala S,13BCS090,Student,CSE
+Kalaiyarasi M,13BCS091,Student,CSE
+Kanimozhi S V,13BCS092,Student,CSE
+Krishna Priya A,13BCS093,Student,CSE
+Malathi Bommi B,13BCS095,Student,CSE
+Monisha Gangasri G,13BCS096,Student,CSE
+Naveena T,13BCS097,Student,CSE
+Neela M,13BCS098,Student,CSE
+Nilanka Corera L,13BCS099,Student,CSE
+Ramalakshmi R,13BCS100,Student,CSE
+Ranjani R,13BCS101,Student,CSE
+Shathina Firthous K,13BCS102,Student,CSE
+Sheeba Daisy S,13BCS103,Student,CSE
+Soundarya A,13BCS104,Student,CSE
+Soundharya R M,13BCS105,Student,CSE
+Subhashini M,13BCS106,Student,CSE
+Thaarani M,13BCS107,Student,CSE
+Vani J,13BCS108,Student,CSE
+Vishnu Priya K A,13BCS109,Student,CSE
+Aravindha Shiva S,13BCS110,Student,CSE
+Arun M,13BCS111,Student,CSE
+Bala Vignesh S,13BCS112,Student,CSE
+Devendra Kumaran M,13BCS113,Student,CSE
+Diwakar N,13BCS114,Student,CSE
+Karthikeyan R R,13BCS115,Student,CSE
+Madhu Perkin T,13BCS116,Student,CSE
+Murali Krishnan A,13BCS117,Student,CSE
+Soundarya L,13BCSL05,Student,CSE
+Gowtham V,13BCSL09,Student,CSE
+Naga Vinodh S,13BCSL15,Student,CSE
+Nallakannu R,13BCSL16,Student,CSE
+Raja Manickam G,13BCSL17,Student,CSE
+Siva Prasanna T,13BCSL18,Student,CSE
+Soundara Rajan Y,13BCSL19,Student,CSE
+Abinaya . K ,14BCS001,Student,CSE
+Abirami . S ,14BCS002,Student,CSE
+Adaikkammai . SP ,14BCS003,Student,CSE
+Anisha . S ,14BCS004,Student,CSE
+Deepa Nandhini . R ,14BCS005,Student,CSE
+Dhivyadharshini . K.K.A ,14BCS006,Student,CSE
+Gayathiri . M ,14BCS007,Student,CSE
+Hemavarshini . S ,14BCS008,Student,CSE
+Ishwarya . S ,14BCS009,Student,CSE
+Jerin Fathi Nisha . I ,14BCS010,Student,CSE
+Lavanya . V ,14BCS011,Student,CSE
+Mahibala . J ,14BCS012,Student,CSE
+Meenakshi . B ,14BCS013,Student,CSE
+Muthu Sindhu . A S ,14BCS014,Student,CSE
+Naga Jothi . P ,14BCS015,Student,CSE
+Nivetha . M ,14BCS016,Student,CSE
+Packiya Brindha . I ,14BCS017,Student,CSE
+Padma Shri . P ,14BCS018,Student,CSE
+Saranya . R ,14BCS020,Student,CSE
+Shubha Shree . R.B ,14BCS021,Student,CSE
+Sona . T ,14BCS022,Student,CSE
+Vaishali . T ,14BCS023,Student,CSE
+Vinitha . R ,14BCS024,Student,CSE
+Ameer Jhan . M ,14BCS025,Student,CSE
+Aswin Balaje . G ,14BCS026,Student,CSE
+Bala Shanmugam . M ,14BCS027,Student,CSE
+Gobinath . M ,14BCS028,Student,CSE
+Kasi Viswanathan . M ,14BCS029,Student,CSE
+Krishnakanth Aravind . K.A ,14BCS030,Student,CSE
+Pradeep Kumar . N ,14BCS031,Student,CSE
+Prashanth . R ,14BCS032,Student,CSE
+Sankaraperumal . M ,14BCS033,Student,CSE
+Selvaraj . V ,14BCS034,Student,CSE
+Shrivatchen . T.R.P ,14BCS035,Student,CSE
+Sundaramoorthy . T ,14BCS036,Student,CSE
+Swamyrajan . A ,14BCS037,Student,CSE
+Veera Kumar . V ,14BCS038,Student,CSE
+Viswanath . P.N ,14BCS039,Student,CSE
+Anushadharini . C ,14BCSL03,Student,CSE
+Arunadevi . A ,14BCSL04,Student,CSE
+Malathi . K ,14BCSL06,Student,CSE
+Pradeepa . K ,14BCSL08,Student,CSE
+Balaraman . B ,14BCSL14,Student,CSE
+Mariselvam . G ,14BCSL16,Student,CSE
+Vignesh Prabu . M ,14BCSL18,Student,CSE
+Abiramisri . S ,14BCS040,Student,CSE
+Alagammai . P ,14BCS041,Student,CSE
+Alnisha . P ,14BCS042,Student,CSE
+Amutha Priya . R ,14BCS043,Student,CSE
+Benazir Parvin . N ,14BCS044,Student,CSE
+Deepika . C ,14BCS045,Student,CSE
+Dhanya . T.S ,14BCS047,Student,CSE
+Durga Devi . V ,14BCS048,Student,CSE
+Gunalini@Muthupetchi . V ,14BCS049,Student,CSE
+Kausiha . R.R ,14BCS050,Student,CSE
+Kavya . K ,14BCS051,Student,CSE
+Keerthana . J ,14BCS052,Student,CSE
+Kirupaa Thanani . M.S ,14BCS053,Student,CSE
+Mahalakhmi . P.P ,14BCS054,Student,CSE
+Maheshwari . C ,14BCS055,Student,CSE
+Maithraye . K ,14BCS056,Student,CSE
+Naancy Sheba . J ,14BCS057,Student,CSE
+Narmada . G.R ,14BCS058,Student,CSE
+Preethi . R.F ,14BCS059,Student,CSE
+Priyadharshini . R ,14BCS060,Student,CSE
+Sangareswari . M ,14BCS061,Student,CSE
+Santhiya . M ,14BCS062,Student,CSE
+Sharine Infantaro Shalini . L ,14BCS063,Student,CSE
+Sherlin Helen . E ,14BCS064,Student,CSE
+Swasthika Devi . M ,14BCS065,Student,CSE
+Bharathiraja . P ,14BCS066,Student,CSE
+Dhivahar Rozario . S ,14BCS067,Student,CSE
+Guru Manikandan . N ,14BCS068,Student,CSE
+Krishnakumar . J ,14BCS069,Student,CSE
+Manish Kumar . V ,14BCS070,Student,CSE
+Muthiah . P ,14BCS071,Student,CSE
+Prabhu . G ,14BCS072,Student,CSE
+Prasanth . M ,14BCS073,Student,CSE
+Sivaprakash . B ,14BCS074,Student,CSE
+Subangan Rao . K.M ,14BCS075,Student,CSE
+Timple Raj . M ,14BCS076,Student,CSE
+Vasantha Kumar . P ,14BCS077,Student,CSE
+Vishal . V ,14BCS078,Student,CSE
+Abarna Devi . G ,14BCSL01,Student,CSE
+Muthumari . P ,14BCSL07,Student,CSE
+Saranyavaishalini . V.G ,14BCSL10,Student,CSE
+Ganesh Babu . M ,14BCSL15,Student,CSE
+Muthu Arunachalam . R ,14BCSL17,Student,CSE
+Abinaya . L ,14BCS079,Student,CSE
+Aishwarya . T ,14BCS080,Student,CSE
+Amutha . R ,14BCS081,Student,CSE
+Angela Esther . R ,14BCS082,Student,CSE
+Annie Rashmitha . A ,14BCS083,Student,CSE
+Aruna . M ,14BCS084,Student,CSE
+Divya Shri . K.R ,14BCS085,Student,CSE
+Gaja Priya . M ,14BCS086,Student,CSE
+Harini . S ,14BCS087,Student,CSE
+Jeya Nanthini . R ,14BCS088,Student,CSE
+Kalanjiah Manchu . S ,14BCS089,Student,CSE
+Kavya . K.K ,14BCS090,Student,CSE
+Kuzhalvaimozhi . B ,14BCS091,Student,CSE
+Madhumitha . G.P ,14BCS092,Student,CSE
+Padma . A ,14BCS093,Student,CSE
+Pavithra . S ,14BCS094,Student,CSE
+Prasha Meena . M ,14BCS095,Student,CSE
+Preethi . J ,14BCS096,Student,CSE
+Roja . E ,14BCS097,Student,CSE
+Subhasree . K ,14BCS098,Student,CSE
+Sudhamathi . A ,14BCS099,Student,CSE
+Sumashree . M ,14BCS100,Student,CSE
+Sureka . K ,14BCS101,Student,CSE
+Vanitha . L ,14BCS102,Student,CSE
+Vijayalakshmi . G ,14BCS103,Student,CSE
+Yuvasankari . A ,14BCS104,Student,CSE
+Alagappan . V ,14BCS105,Student,CSE
+Annamalai Vinoth . B ,14BCS106,Student,CSE
+Gopalakrishnan . S ,14BCS107,Student,CSE
+Hariharan . M ,14BCS108,Student,CSE
+Kiran . B ,14BCS109,Student,CSE
+Naageswaren . K ,14BCS110,Student,CSE
+Naveen Prashaanth . K ,14BCS111,Student,CSE
+Nemallan . G ,14BCS112,Student,CSE
+Palani Kumar . C ,14BCS113,Student,CSE
+Praveen Kumar . L ,14BCS114,Student,CSE
+Ramkumar . S ,14BCS115,Student,CSE
+Sundara Moorthy . A ,14BCS116,Student,CSE
+Velmurugan . R ,14BCS117,Student,CSE
+Abisha Stephen . SP ,14BCSL02,Student,CSE
+Diviyalakshmy . Y ,14BCSL05,Student,CSE
+Pradeepa . S ,14BCSL09,Student,CSE
+Sivaranjani . R ,14BCSL11,Student,CSE
+Vinodhini . J ,14BCSL12,Student,CSE
+Ajithkumar . K ,14BCSL13,Student,CSE
