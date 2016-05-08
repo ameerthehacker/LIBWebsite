@@ -119,8 +119,8 @@ if(!isset($_SESSION['user'])){
                     require_once('include/table.inc.php');
                     
                     $books=new CTable('libbooks','libbooks');
-                    $sql="SELECT bookname,id,author,IFNULL(publication,'N/A'),price FROM libbooks";
-                    $html=$books->drawTable(array('#','Book Name','Book ID','Author','Publisher','Price'),true,$sql);
+                    $sql="SELECT bookname,id,author,IFNULL(publication,'N/A'),price,IFNULL(userid,'Available') FROM libbooks l LEFT OUTER JOIN issues i on l.id=i.bookid";
+                    $html=$books->drawTable(array('#','Book Name','Book ID','Author','Publisher','Price','Status'),true,$sql);
                     echo($html);
                     ?>
                 </div>
@@ -175,12 +175,12 @@ if(!isset($_SESSION['user'])){
                             </div>
                             <div id="div-users-details" class="form-group" style="display:none;visibility:hidden;">
                                <div class="col-lg-12">
-                                    <table class="table">
+                                    <table class="table table-bordered">
                                         <tr>
-                                            <td id="d-username"><td>
-                                            <td id="d-userid"><td>
-                                            <td id="d-department"><td>
-                                            <td id="d-category"><td>                                            
+                                            <td id="d-username"></td>
+                                            <td id="d-userid"></td>
+                                            <td id="d-department"></td>
+                                            <td id="d-category"></td>                                            
                                         </tr>
                                     </table>
                                </div>
@@ -194,12 +194,13 @@ if(!isset($_SESSION['user'])){
                             <!--div for book details-->
                             <div id="div-books-details" class="form-group" style="display:none;visibility:hidden;">
                                <div class="col-lg-12">
-                                    <table class="table">
-                                        <tr>
-                                            <td id="d-bookname"><td>
-                                            <td id="d-author"><td>
-                                            <td id="d-publication"><td>
-                                            <td id="d-price"><td>                                            
+                                    <table class="table table-bordered">
+                                        <tr id="row-books-details">
+                                            <td id="d-bookname"></td>
+                                            <td id="d-author"></td>
+                                            <td id="d-publication"></td>
+                                            <td id="d-price"></td>  
+                                            <td id="d-status"></td>                                         
                                         </tr>
                                     </table>
                                </div>
@@ -486,9 +487,27 @@ if(!isset($_SESSION['user'])){
                             <div class="form-group">
                                 <label class="control-label col-lg-2">Book ID</label>
                                 <div class="col-lg-10">
-                                    <input class="form-control" type="text" placeholder="Unique ID of the book..." name="bookid"/>
+                                    <input id="text-books-return-id" class="form-control" type="text" placeholder="Unique ID of the book..." name="bookid"/>
                                 </div>
-                            </div>                            
+                            </div> 
+                            <div id="div-return-details" class="form-group" style="display:none;visibility:hidden;">
+                               <div class="col-lg-12">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td id="r-bookname"></td>
+                                            <td id="r-author"></td>
+                                            <td id="r-publication"></td>
+                                            <td id="r-price"></td>  
+                                        </tr>
+                                        <tr>
+                                            <td id="r-userid"></td>
+                                            <td id="r-username"></td>
+                                            <td id="r-department"></td>
+                                            <td id="r-category"></td>                                            
+                                        </tr>
+                                    </table>
+                               </div>
+                            </div>                           
                         </form>
                     </div>
                     <div class="modal-footer">

@@ -20,6 +20,8 @@ $(function(){
     var textBooksIssueDate=$("#text-books-issue-date");
     var textBooksIssueID=$("#text-books-issue-id");
     var textUsersIssueID=$("#text-users-issue-id");
+    var textBooksReturnID=$("#text-books-return-id");
+    
     
     var btnBooksAdd=$("#btn-books-add");
     var btnBooksDelete=$("#btn-books-delete");
@@ -102,17 +104,26 @@ $(function(){
                   $("#d-bookname").text(response.book.bookname);
                   $("#d-author").text(response.book.author);
                   $("#d-publication").text(response.book.publication);
-                  $("#d-price").text(response.book.price);        
+                  $("#d-price").text(response.book.price);     
+                  $("#d-status").text(response.book.status);   
+                  if(response.book.status=="Available"){
+                      $("#row-books-details").addClass("success")
+                  }
+                  else{
+                      $("#row-books-details").addClass("danger")                      
+                  }
                   $("#div-books-details").css({'display':'block','visibility':'visible'});          
               }
               else{
-                  $("#div-books-details").css({'display':'none','visibility':'hidden'});                             
+                  $("#div-books-details").css({'display':'none','visibility':'hidden'});        
+                  $("#row-books-details").removeClass();                                       
               }
           },error:function(){
               $.growl(ajaxError);
           } 
        });
     });
+    
     
     textUsersIssueID.on('keyup',function(evt){
        $.ajax({
@@ -130,6 +141,35 @@ $(function(){
               }
               else{
                   $("#div-users-details").css({'display':'none','visibility':'hidden'});                             
+              }
+          },error:function(){
+              $.growl(ajaxError);
+          } 
+       });
+    });
+    
+    textBooksReturnID.on('keyup',function(evt){
+       $.ajax({
+          url:'scripts/php/books/detail.php',
+          method:'get',
+          data:{id:textBooksReturnID.val()},
+          success:function(response){
+              response=jQuery.parseJSON(response);
+              if(response.found && response.book.status!="Available"){
+                  $("#r-bookname").text(response.book.bookname);
+                  $("#r-author").text(response.book.author);
+                  $("#r-publication").text(response.book.publication);
+                  $("#r-price").text(response.book.price);     
+           
+                  $("#r-username").text(response.book.username);
+                  $("#r-userid").text(response.book.status);
+                  $("#r-department").text(response.book.dept);
+                  $("#r-category").text(response.book.category);
+                          
+                  $("#div-return-details").css({'display':'block','visibility':'visible'});          
+              }
+              else{
+                  $("#div-return-details").css({'display':'none','visibility':'hidden'});        
               }
           },error:function(){
               $.growl(ajaxError);
