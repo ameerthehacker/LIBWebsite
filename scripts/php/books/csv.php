@@ -3,8 +3,8 @@ session_start();
 
 require_once('../../../include/connect.inc.php');
 if(isset($_SESSION['user'])){
-    if(isset($_FILES['bookscsv'])){
-        if($_FILES['bookscsv']['type']=="application/vnd.ms-excel"){
+    if(isset($_FILES['csv'])){
+        if($_FILES['csv']['type']=="application/vnd.ms-excel"){
             $sql='LOAD DATA LOCAL INFILE "upload.csv"
                   INTO TABLE libbooks
                   FIELDS TERMINATED BY ","
@@ -12,10 +12,10 @@ if(isset($_SESSION['user'])){
                   LINES TERMINATED BY "\r\n"
                  (id,bookname,author,publication,price)';
                  
-            move_uploaded_file($_FILES['bookscsv']['tmp_name'],'upload.csv');
+            move_uploaded_file($_FILES['csv']['tmp_name'],'upload.csv');
             
             if(mysql_query($sql)){
-                $response=['title'=>'Done!','style'=>'notice','message'=>'Inserted '.mysql_affected_rows().' users','location'=>'tc'];                                                   
+                $response=['title'=>'Done!','style'=>'notice','message'=>'Inserted '.mysql_affected_rows().' books','location'=>'tc'];                                                   
             }
             else{
                 $response=['title'=>'Internal Error!','message'=>mysql_error(),'location'=>'tc'];                                   

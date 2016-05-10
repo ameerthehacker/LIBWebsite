@@ -464,7 +464,22 @@ if(!isset($_SESSION['user'])){
                                     <input type="text" name="price" placeholder="Price of the book" class="form-control"/>
                                 </div>
                             </div>
-                        </form>                        
+                        </form> 
+                        <form id="form-books-csv" class="form-horizontal" method="post" action="scripts/php/books/csv.php" enctype="multipart/form-data">
+                            <input id="file-books-csv" style="display:none;visiblity:hidden" type="file" name="csv"/>
+                            <div class="form-group">
+                                <label class="col-lg-12 text-center">Import From CSV</label>                                  
+                            </div>
+                            <div class="form-group">
+                                <label id="label-books-csv" class="col-lg-8 control-label">Choose a file ...</label>
+                                <div class="col-lg-2">
+                                    <button id="btn-books-browse-csv" class="btn btn-primary form-control">Browse</button>
+                                </div>
+                                <div class="col-lg-2">
+                                    <button id="btn-books-csv" class="btn btn-success form-control">Submit</button>
+                                </div>
+                            </div>
+                        </form>                       
                     </div>
                     <div class="modal-footer">
                         <button id="btn-books-add" class="btn btn-success">Add</button>

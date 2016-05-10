@@ -23,6 +23,10 @@
              header('refresh:0;admin.php'); 
              exit();
         }	
+        if(isset($_SESSION['libuser'])){
+            header('refresh:0;user.php'); 
+            exit();
+        }
         if(isset($_POST['submit'])){
             $username=$_POST['username'];
             $password=$_POST['password'];
@@ -39,7 +43,19 @@
                     }
                 }
                 else{
-                    popup('Sorry','Your username is incorrect!');												
+                    if($login->getLibUser()){
+                        if($login->isLibUser()){
+                            $_SESSION['libuser']=$login->getLibUser();
+                            header('refresh:0;user.php'); 
+                            exit();   
+                        }
+                        else{
+                            popup("Sorry","$username,your password is incorrect!");                            
+                        }
+                    }
+                    else{
+                        popup('Sorry','Your username is incorrect!');												                        
+                    }
                 }
             }
             else{
