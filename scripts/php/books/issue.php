@@ -58,6 +58,9 @@ if(isset($_SESSION['user'])){
             $response=['title'=>'Error!','message'=>'No such user is found','style'=>'error','location'=>'tc'];               
         }
     }
+    else{
+        $response=['title'=>'Internal Error','message'=>mysql_error(),'style'=>'error','location'=>'tc'];   
+    }
 }
 else{
     $response=['title'=>'Access Denied','message'=>'You are not authentiated','style'=>'error','location'=>'tc'];

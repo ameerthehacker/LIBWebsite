@@ -21,7 +21,7 @@ if(isset($_SESSION['user'])){
             }
         } 
         else{
-            $response=['title'=>'Error!','message'=>mysql_error(),'style'=>'error','location'=>'tc'];               
+            $response=['title'=>'Internal Error!','message'=>mysql_error(),'style'=>'error','location'=>'tc'];               
         }
     }
     else{
