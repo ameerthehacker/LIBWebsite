@@ -26,6 +26,7 @@
         if(isset($_SESSION['libuser'])){
             header('refresh:0;user.php'); 
             exit();
+            
         }
         if(isset($_POST['submit'])){
             $username=$_POST['username'];

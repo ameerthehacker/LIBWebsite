@@ -25,7 +25,8 @@ $username=$_SESSION['libuser']['userid'];
         <!--Javascript-->
         <script src="scripts/js/jquery.min.js" type="text/javascript"></script>
         <script src="scripts/js/bootstrap.min.js" type="text/javascript"></script>                        
-        <script src="scripts/js/jquery.dialog.js" type="text/javascript"></script>                        
+        <script src="scripts/js/jquery.dialog.js" type="text/javascript"></script>     
+        <script src="scripts/js/jquery.form.js" type="text/javascript"></script>                   
         <script src="scripts/js/user.js" type="text/javascript"></script> 
         
         <title>My Account</title>
@@ -53,7 +54,7 @@ $username=$_SESSION['libuser']['userid'];
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a role="button" href="#">Change Password</a>
+                                    <a role="button" data-toggle="modal" data-target="#modal-users-change-password" href="#">Change Password</a>
                                 </li>
                                 <li>
                                     <a role="button" href="logout.php">Logout</a>
@@ -144,6 +145,43 @@ $username=$_SESSION['libuser']['userid'];
                    ?>
                </div>
            </div>
+        </div>
+        <!--Modal for changing the user pasword-->
+        <div class="modal fade" id="modal-users-change-password">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Change Password</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-users-change-password" class="form-horizontal" method="post" action="scripts/php/users/changepassword.php">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Old Password</label>
+                                <div class="col-lg-8">
+                                    <input placeholder="Type old password" type="password" class="form-control" name="oldpassword"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">New Password</label>
+                                <div class="col-lg-8">
+                                    <input placeholder="Type new password" type="password" class="form-control" name="newpassword"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Retype New Password</label>
+                                <div class="col-lg-8">
+                                    <input placeholder="Retype new password" type="password" class="form-control" name="retypepassword"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn-users-change-password" class="btn btn-success">Change</button>                        
+                        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
