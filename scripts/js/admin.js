@@ -50,9 +50,7 @@ $(function () {
     var adminTabs = $("#admin-tabs");
     var libBooks = $("#libbooks");
     var libUsers = $("#libusers");
-    var libBooksCheckBox = $(".libbooks-checkbox");
-    var libUsersCheckBox = $(".libusers-checkbox");
-    var libUsersCheckBox = $(".libusers-checkbox");
+    
     var libBooksRow = $(".libbooks-row");
     var libUsersRow = $(".libusers-row");
 
@@ -277,8 +275,9 @@ $(function () {
     });
 
     btnUsersInvert.on('click', function (evt) {
+        var libUsersCheckBox = $(".libusers-checkbox");                               
         libUsersCheckBox.each(function () {
-            if ($(this).is(" :checked")) {
+            if ($(this).is(" :checked") && $(this).css('visibility')=='visible') {
                 $(this).prop('checked', false);
             }
             else {
@@ -304,14 +303,18 @@ $(function () {
         });
     });
     btnUsersSelectAll.on('click', function (evt) {
+        var libUsersCheckBox = $(".libusers-checkbox");               
         libUsersCheckBox.each(function () {
-            $(this).prop('checked', true);
+            if($(this).css('visibility')=='visible'){
+                $(this).prop('checked', true);
+            }
         });
     });
 
     btnBooksInvert.on('click', function (evt) {
+        var libBooksCheckBox = $(".libbooks-checkbox");
         libBooksCheckBox.each(function () {
-            if ($(this).is(" :checked")) {
+            if ($(this).is(" :checked") && $(this).css('visibility')=='visible') {
                 $(this).prop('checked', false);
             }
             else {
@@ -322,6 +325,7 @@ $(function () {
 
     btnUsersDelete.on('click', function () {
         var checked = [];
+        var libUsersCheckBox = $(".libusers-checkbox");       
         libUsersCheckBox.each(function () {
             if ($(this).is(" :checked")) {
                 checked.push($(this).attr('field-id'));
@@ -343,12 +347,16 @@ $(function () {
     });
 
     btnBooksSelectAll.on('click', function (evt) {
+        var libBooksCheckBox = $(".libbooks-checkbox");        
         libBooksCheckBox.each(function () {
-            $(this).prop('checked', true);
+            if($(this).css('visibility')=='visible'){
+                $(this).prop('checked', true);                                
+            }
         });
     });
     btnBooksDelete.on('click', function () {
         var checked = [];
+        var libBooksCheckBox = $(".libbooks-checkbox");
         libBooksCheckBox.each(function () {
             if ($(this).is(" :checked")) {
                 checked.push($(this).attr('field-id'));

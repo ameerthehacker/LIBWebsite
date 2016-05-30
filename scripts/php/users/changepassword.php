@@ -21,7 +21,7 @@ if(isset($_SESSION['libuser'])){
                 $response=['error'=>false,'title'=>'Done!','message'=>'The password was changed','style'=>'notice','location'=>'tc'];                                    
             }
             else{
-                $response=array('error'=>true,'title'=>'Internal Error!','message'=>'There was an internal error'.mysql_error(),'style'=>'error','location'=>'tc');                    
+                $response=array('error'=>true,'title'=>'Internal Error!','message'=>mysql_error(),'style'=>'error','location'=>'tc');                    
             }
         }
         else{

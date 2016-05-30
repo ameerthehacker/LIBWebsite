@@ -10,7 +10,7 @@ if(isset($_SESSION['user'])){
             $response=array('error'=>false,'title'=>'Done!','message'=>'The books were removed','style'=>'notice','location'=>'tc');                        
         }
         else{
-            $response=array('error'=>true,'title'=>'Internal Error!','message'=>'There was an internal error','style'=>'error','location'=>'tc');                    
+            $response=array('error'=>true,'title'=>'Internal Error!','message'=>mysql_error(),'style'=>'error','location'=>'tc');                    
         }   
     }
     else{
