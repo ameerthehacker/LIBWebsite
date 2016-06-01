@@ -5,8 +5,8 @@ function popUp($title,$message,$style="error",$location="tc",$time=3000)
 	echo("$popMsg");
 }
 function sqlEscape($array){
-	foreach ($variable as $key => $value) {
-		$array['$key']=mysql_real_escape_string($variable);
+	foreach ($array as $key => $value) {
+		$array[$key]=mysql_real_escape_string($value);
 	}
 	return $array;
 }
