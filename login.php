@@ -29,6 +29,7 @@
             
         }
         if(isset($_POST['submit'])){
+            $_POST=sqlEscape($_POST);
             $username=$_POST['username'];
             $password=$_POST['password'];
             if($username!="" and $password!=""){
