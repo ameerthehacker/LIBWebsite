@@ -6,7 +6,7 @@ class CTable{
 	private $tableName;
 	private $tableid;
 	
-	public function __construct($tableName,$tableid=""){
+	public function __construct($tableName="",$tableid=""){
 		$this->tableName=$tableName;
 		$this->tableid=$tableid;
 	}
@@ -15,6 +15,9 @@ class CTable{
             $sql="SELECT * FROM $this->tableName";                        
         }
 		if($result_records=mysql_query($sql)){
+            if(mysql_num_rows($result_records)==0){
+                return false;
+            }
             $header="<table id=\"$this->tableid\" table-name=\"$this->tableName\" class=\"table table-stripped table-hover\" cellspacing=\"0\" width=\"100%\">\n<thead>\n<tr>\n";
             $body="<tbody>\n";
             $footer="<tfoot>\n<tr>\n";

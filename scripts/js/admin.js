@@ -58,7 +58,6 @@ $(function () {
     var selectedBook = {};
     var availableBooks = [];
 
-    adminTabs.tabs();
     libBooks.dataTable();
     libUsers.dataTable();
 

@@ -20,7 +20,6 @@ $username=$_SESSION['libuser']['userid'];
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
         <link href="css/jquery.dialog.css" type="text/css" rel="stylesheet"/>
         <link href="css/jquery-ui.min.css" type="text/css" rel="stylesheet"/>                
-        <link href="css/user.css" type="text/css" rel="stylesheet"/>        
             
         <!--Javascript-->
         <script src="scripts/js/jquery.min.js" type="text/javascript"></script>
@@ -32,7 +31,7 @@ $username=$_SESSION['libuser']['userid'];
         <title>My Account</title>
     </head>
     <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a href="#" class="navbar-brand">CSE Library</a>
@@ -44,6 +43,7 @@ $username=$_SESSION['libuser']['userid'];
                 </div>
                 <div class="navbar-collapse collapse" id="navbar-body">
                     <ul class="navbar-nav nav pull-right">
+                        <li><a href="index.php">Home</a></li>
                         <li class="dropdown">
                             <a href="#" role="button" data-toggle="dropdown">
                                 <span class="glyphicon glyphicon-user"></span>

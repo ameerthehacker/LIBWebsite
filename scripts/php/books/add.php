@@ -2,6 +2,7 @@
 session_start();
 
 require_once('../../../include/connect.inc.php');
+require_once('../../../include/core.inc.php');
 
 if(isset($_SESSION['user'])){
     foreach ($_POST as $key=>$val) {
@@ -11,6 +12,9 @@ if(isset($_SESSION['user'])){
           exit();
       }
     }
+    
+    $_POST=sqlEscape($_POST);   //SQL injection safe 
+    
     if($_POST['publication']==""){
         $sql="INSERT INTO libbooks VALUES('$_POST[bookname]','$_POST[bookid]','$_POST[author]',null,'$_POST[price]')";        
     }

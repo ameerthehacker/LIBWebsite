@@ -35,7 +35,7 @@ if(!isset($_SESSION['user'])){
              
     </head>
     <body>
-        <div class="navbar navbar-fixed-top navbar-inverse">
+        <div class="navbar">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-body">
@@ -47,6 +47,7 @@ if(!isset($_SESSION['user'])){
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-body">
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="index.php">Home</a></li>
                         <li class="dropdown">
                             <a role="button" class="dropdown-toggle" data-toggle="dropdown">Users <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -88,68 +89,70 @@ if(!isset($_SESSION['user'])){
         
         <div class="container-fluid">
             <div id="admin-tabs">
-                <ul>
+                <ul class="nav nav-tabs">
                     <li>
-                        <a href="#books">Books</a>
+                        <a href="#books" data-toggle="tab">Books</a>
                     </li>
                     <li>
-                        <a href="#users">Users</a>
+                        <a href="#users" data-toggle="tab">Users</a>
                     </li>
                 </ul>
-                <div id="books">
-                    <form class="form-inline pull-right" onsubmit="return false">
-                        <div class="form-group">
-                            <div class="col-lg-2">
-                                <button id="btn-books-delete" class="btn btn-danger form-control">Delete</button>
+                <div class="tab-content">
+                    <div id="books" class="tab-pane fade in active">
+                        <form class="form-inline pull-right" onsubmit="return false">
+                            <div class="form-group">
+                                <div class="col-lg-2">
+                                    <button id="btn-books-delete" class="btn btn-danger form-control">Delete</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-2">
-                                <button id="btn-books-selectall" class="btn btn-primary form-control">Select All</button>
+                            <div class="form-group">
+                                <div class="col-lg-2">
+                                    <button id="btn-books-selectall" class="btn btn-primary form-control">Select All</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-2">
-                                <button id="btn-books-invert" class="btn btn-primary form-control">Invert</button>
+                            <div class="form-group">
+                                <div class="col-lg-2">
+                                    <button id="btn-books-invert" class="btn btn-primary form-control">Invert</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                    <?php 
-                   
-                    require_once('include/table.inc.php');
+                        </form>
+                        <?php 
                     
-                    $books=new CTable('libbooks','libbooks');
-                    $sql="SELECT bookname,id,author,IFNULL(publication,'N/A'),price,IFNULL(userid,'Available') FROM libbooks l LEFT OUTER JOIN issues i on l.id=i.bookid";
-                    $html=$books->drawTable(array('#','Book Name','Book ID','Author','Publisher','Price','Status'),true,$sql);
-                    echo($html);
-                    ?>
-                </div>
-                <div id="users">
-                   <form class="form-inline pull-right" onsubmit="return false">
-                        <div class="form-group">
-                            <div class="col-lg-2">
-                                <button id="btn-users-delete" class="btn btn-danger form-control">Delete</button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-2">
-                                <button id="btn-users-selectall" class="btn btn-primary form-control">Select All</button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-2">
-                                <button id="btn-users-invert" class="btn btn-primary form-control">Invert</button>
-                            </div>
-                        </div>
-                    </form>
-                    <?php 
-                   
-                    require_once('include/table.inc.php');
+                        require_once('include/table.inc.php');
+                        
+                        $books=new CTable('libbooks','libbooks');
+                        $sql="SELECT bookname,id,author,IFNULL(publication,'N/A'),price,IFNULL(userid,'Available') FROM libbooks l LEFT OUTER JOIN issues i on l.id=i.bookid";
+                        $html=$books->drawTable(array('#','Book Name','Book ID','Author','Publisher','Price','Status'),true,$sql);
+                        echo($html);
+                        ?>
+                    </div>
+                    <div id="users" class="tab-pane fade in">
+                        <form class="form-inline pull-right" onsubmit="return false">
+                                <div class="form-group">
+                                    <div class="col-lg-2">
+                                        <button id="btn-users-delete" class="btn btn-danger form-control">Delete</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-2">
+                                        <button id="btn-users-selectall" class="btn btn-primary form-control">Select All</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-2">
+                                        <button id="btn-users-invert" class="btn btn-primary form-control">Invert</button>
+                                    </div>
+                                </div>
+                            </form>
+                        <?php 
                     
-                    $books=new CTable('libusers','libusers');
-                    $html=$books->drawTable(array('#','Username','User ID','Department','Category'),true);
-                    echo($html);
-                    ?>
+                        require_once('include/table.inc.php');
+                        
+                        $books=new CTable('libusers','libusers');
+                        $html=$books->drawTable(array('#','Username','User ID','Department','Category'),true);
+                        echo($html);
+                        ?>
+                    </div>
                 </div>
             </div>            
         </div>

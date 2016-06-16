@@ -29,7 +29,9 @@
             
         }
         if(isset($_POST['submit'])){
-            $_POST=sqlEscape($_POST);
+            
+            $_POST=sqlEscape($_POST);   //SQL injection safe 
+            
             $username=$_POST['username'];
             $password=$_POST['password'];
             if($username!="" and $password!=""){
@@ -56,18 +58,18 @@
                         }
                     }
                     else{
-                        popup('Sorry','Your username is incorrect!');												                        
+                        popup("Sorry","Your username is incorrect!");												                        
                     }
                 }
             }
             else{
-                popup('Sorry',"Username or password can't be empty!",'warning');
+                popup("Sorry","Username or password can\'t be empty!","warning");
             }
         }
         ?>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-push-4 col-sm-4 col-xs-push-1 col-xs-10">
+                <div class="col-sm-push-4 col-sm-4 col-xs-push-1 col-xs-10">                                                                        
                     <div class="well login-box">
                         <form method="post" action="login.php">
                             <div class="form-group text-center">
@@ -83,6 +85,12 @@
                                 <button class="btn btn-primary form-control" type="submit" name="submit">Submit</button>                                                              
                             </div><!--form-control-->
                         </form>
+                        <div class="text-center">
+                            <h4>
+                                <span class="glyphicon glyphicon-home"></span>
+                                <a href="index.php">Go Home</a>
+                            </h4>
+                        </div>
                     </div><!--well-->
                 </div><!--col-xs-push-4 col-xs-4-->
             </div><!--row-->
