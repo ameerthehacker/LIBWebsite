@@ -146,7 +146,9 @@ $username=$_SESSION['libuser']['userid'];
                </div>
            </div>
         </div>
-        <!--Modal for changing the user pasword-->
+
+        <!--Modal for changing the user password-->
+
         <div class="modal fade" id="modal-users-change-password">
             <div class="modal-dialog">
                 <div class="modal-content">

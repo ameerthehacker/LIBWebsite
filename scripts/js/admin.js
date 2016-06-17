@@ -10,6 +10,7 @@ $(function () {
     var formBooksCSV = $("#form-books-csv");
     var formBooksIssue = $("#form-books-issue");
     var formBooksReturn = $("#form-books-return");
+    var formAdminsChangePassword=$("#form-admins-change-password");
 
     var fileUsersCSV = $("#file-users-csv");
     var fileBooksCSV = $("#file-books-csv");
@@ -31,6 +32,7 @@ $(function () {
     var btnBooksIssue = $("#btn-books-issue");
     var btnBooksReturn = $("#btn-books-return");
     var btnBooksRenew = $("#btn-books-renew");
+    var btnAdminsChangePassword=$("#btn-admins-change-password");    
 
     var btnUsersAdd = $("#btn-users-add");
     var btnUsersBrowseCSV = $("#btn-users-browse-csv");
@@ -61,6 +63,7 @@ $(function () {
     libBooks.dataTable();
     libUsers.dataTable();
 
+    formAdminsChangePassword.ajaxForm();
 
     formUsersAdd.ajaxForm();
     formBooksAdd.ajaxForm();
@@ -395,4 +398,17 @@ $(function () {
             }
         });
     });
+
+    btnAdminsChangePassword.on('click',function(evt){
+        formAdminsChangePassword.ajaxSubmit({
+            success:function(response){
+                response=jQuery.parseJSON(response);
+                $.growl(response);
+            },
+            error:function(){
+                $.growl(ajaxError);
+            }
+        });
+    });
+
 });

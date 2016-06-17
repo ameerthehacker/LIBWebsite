@@ -73,7 +73,7 @@ if(!isset($_SESSION['user'])){
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#">Change Password</a>
+                                    <a href="#" role="button" data-toggle="modal" data-target="#modal-admins-change-password">Change Password</a>
                                 </li>
                                 <li>
                                     <a href="logout.php">Logout</a>
@@ -88,76 +88,114 @@ if(!isset($_SESSION['user'])){
         
         
         <div class="container-fluid">
-            <div id="admin-tabs">
-                <ul class="nav nav-tabs">
-                    <li>
-                        <a href="#books" data-toggle="tab">Books</a>
-                    </li>
-                    <li>
-                        <a href="#users" data-toggle="tab">Users</a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div id="books" class="tab-pane fade in active">
-                        <form class="form-inline pull-right" onsubmit="return false">
+            <ul class="nav nav-tabs">
+                <li>
+                    <a href="#books" data-toggle="tab">Books</a>
+                </li>
+                <li>
+                    <a href="#users" data-toggle="tab">Users</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="books" class="tab-pane fade in active">
+                    <form class="form-inline pull-right" onsubmit="return false">
+                        <div class="form-group">
+                            <div class="col-lg-2">
+                                <button id="btn-books-delete" class="btn btn-danger form-control">Delete</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-2">
+                                <button id="btn-books-selectall" class="btn btn-primary form-control">Select All</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-2">
+                                <button id="btn-books-invert" class="btn btn-primary form-control">Invert</button>
+                            </div>
+                        </div>
+                    </form>
+                    <?php 
+                
+                    require_once('include/table.inc.php');
+                    
+                    $books=new CTable('libbooks','libbooks');
+                    $sql="SELECT bookname,id,author,IFNULL(publication,'N/A'),price,IFNULL(userid,'Available') FROM libbooks l LEFT OUTER JOIN issues i on l.id=i.bookid";
+                    $html=$books->drawTable(array('#','Book Name','Book ID','Author','Publisher','Price','Status'),true,$sql);
+                    echo($html);
+                    ?>
+                </div>
+                <div id="users" class="tab-pane fade in">
+                    <form class="form-inline pull-right" onsubmit="return false">
                             <div class="form-group">
                                 <div class="col-lg-2">
-                                    <button id="btn-books-delete" class="btn btn-danger form-control">Delete</button>
+                                    <button id="btn-users-delete" class="btn btn-danger form-control">Delete</button>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-2">
-                                    <button id="btn-books-selectall" class="btn btn-primary form-control">Select All</button>
+                                    <button id="btn-users-selectall" class="btn btn-primary form-control">Select All</button>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-2">
-                                    <button id="btn-books-invert" class="btn btn-primary form-control">Invert</button>
+                                    <button id="btn-users-invert" class="btn btn-primary form-control">Invert</button>
                                 </div>
                             </div>
                         </form>
-                        <?php 
+                    <?php 
+                
+                    require_once('include/table.inc.php');
                     
-                        require_once('include/table.inc.php');
-                        
-                        $books=new CTable('libbooks','libbooks');
-                        $sql="SELECT bookname,id,author,IFNULL(publication,'N/A'),price,IFNULL(userid,'Available') FROM libbooks l LEFT OUTER JOIN issues i on l.id=i.bookid";
-                        $html=$books->drawTable(array('#','Book Name','Book ID','Author','Publisher','Price','Status'),true,$sql);
-                        echo($html);
-                        ?>
-                    </div>
-                    <div id="users" class="tab-pane fade in">
-                        <form class="form-inline pull-right" onsubmit="return false">
-                                <div class="form-group">
-                                    <div class="col-lg-2">
-                                        <button id="btn-users-delete" class="btn btn-danger form-control">Delete</button>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-lg-2">
-                                        <button id="btn-users-selectall" class="btn btn-primary form-control">Select All</button>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-lg-2">
-                                        <button id="btn-users-invert" class="btn btn-primary form-control">Invert</button>
-                                    </div>
-                                </div>
-                            </form>
-                        <?php 
-                    
-                        require_once('include/table.inc.php');
-                        
-                        $books=new CTable('libusers','libusers');
-                        $html=$books->drawTable(array('#','Username','User ID','Department','Category'),true);
-                        echo($html);
-                        ?>
-                    </div>
+                    $books=new CTable('libusers','libusers');
+                    $html=$books->drawTable(array('#','Username','User ID','Department','Category'),true);
+                    echo($html);
+                    ?>
                 </div>
-            </div>            
+            </div>
         </div>
         
         <!--Modals For the page-->
+
+        <!--Modal for changing the admin password-->
+
+        <div class="modal fade" id="modal-admins-change-password">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Change Password</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-admins-change-password" class="form-horizontal" method="post" action="scripts/php/users/changepassword.php">
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Old Password</label>
+                                <div class="col-lg-8">
+                                    <input placeholder="Type old password" type="password" class="form-control" name="oldpassword"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">New Password</label>
+                                <div class="col-lg-8">
+                                    <input placeholder="Type new password" type="password" class="form-control" name="newpassword"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-4">Retype New Password</label>
+                                <div class="col-lg-8">
+                                    <input placeholder="Retype new password" type="password" class="form-control" name="retypepassword"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn-admins-change-password" class="btn btn-success">Change</button>                        
+                        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         
         
         <!--Modal for issuing the book-->
