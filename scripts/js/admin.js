@@ -51,26 +51,32 @@ $(function () {
     var btnUsersUpdate = $("#btn-users-update");
 
     var btnJournalsAdd=$("#btn-journals-add");
+    var btnJournalsDelete = $("#btn-journals-delete");
+    var btnJournalsSelectAll = $("#btn-journals-selectall");
+    var btnJournalsInvert = $("#btn-journals-invert");
 
     var modalUsersUpdate = $("#modal-users-update");
     var modalBooksUpdate = $("#modal-books-update");
-
-
+    var modalJournalsUpdate = $("#modal-journals-update");    
 
     var libBooks = $("#libbooks");
     var libUsers = $("#libusers");
+    var libJournals = $("#libjournals");
     
     var libBooksRow = $(".libbooks-row");
     var libUsersRow = $(".libusers-row");
+    var libJournalsRow=$(".libjournals-row");
 
     var suggestJournalsAuthors=$("#suggest-journals-authors");
 
     var selectedUser = {};
     var selectedBook = {};
+    var selectedJournal={};
     var availableBooks = [];
 
     libBooks.dataTable();
     libUsers.dataTable();
+    libJournals.dataTable();
 
     formAdminsChangePassword.ajaxForm();
 
@@ -89,6 +95,10 @@ $(function () {
     });
     textJournalsDate.datepicker({
         dateFormat: 'yy-mm-dd'
+    });
+
+    $("#journaldate").datepicker({
+        dateFormat: 'yy-mm-dd'        
     });
 
     btnBooksRenew.on('click', function (evt) {
@@ -162,7 +172,7 @@ $(function () {
         var authors=listOfAuthors.split(",");
         if(listOfAuthors!=""){
             $.ajax({
-                url:'scripts/php/journals/getauthor.php',
+                url:'scripts/php/users/getusernames.php',
                 method:'post',
                 data:{id:authors},
                 success:function(response){
@@ -321,6 +331,35 @@ $(function () {
         modalBooksUpdate.modal('show');
     });
 
+    libJournalsRow.on('dblclick',function(evt){
+        var fields = [];
+        $(this).children('.field').each(function () {
+            fields.push($(this).text());
+        });
+        selectedJournal=$(this).attr('field-id');
+        $("#journalname").val(fields[0]);
+        $("#journaltitle").val(fields[1]);
+        $("#journaldate").val(fields[3]);
+        $("#journalimpact").val(fields[4]);
+
+        $.ajax({
+            url:'scripts/php/journals/getauthor.php',
+            method:'post',
+            data:{id:selectedJournal},
+            success:function(response){
+                response=jQuery.parseJSON(response);
+                if(response.found){
+                    $("#journalauthors").val(response.authors);
+                    modalJournalsUpdate.modal('show');                    
+                }
+            },
+            error:function(error){
+                $.growl(ajaxError);
+            }
+        });
+
+    });
+
     btnUsersInvert.on('click', function (evt) {
         var libUsersCheckBox = $(".libusers-checkbox");                               
         libUsersCheckBox.each(function () {
@@ -424,11 +463,55 @@ $(function () {
         });
     });
 
+    btnJournalsSelectAll.on('click', function (evt) {
+        var libJournalsCheckBox = $(".libjournals-checkbox");               
+        libJournalsCheckBox.each(function () {
+            if($(this).css('visibility')=='visible'){
+                $(this).prop('checked', true);
+            }
+        });
+    });
+
+    btnJournalsInvert.on('click', function (evt) {
+        var libJournalsCheckBox = $(".libjournals-checkbox");
+        libJournalsCheckBox.each(function () {
+            if ($(this).is(" :checked") && $(this).css('visibility')=='visible') {
+                $(this).prop('checked', false);
+            }
+            else {
+                $(this).prop('checked', true);
+            }
+        });
+    });
+
     btnUsersAdd.on('click', function (evt) {
         formUsersAdd.ajaxSubmit({
             success: function (response) {
                 response = jQuery.parseJSON(response);
                 $.growl(response);
+            }
+        });
+    });
+
+    btnJournalsDelete.on('click',function(evt){
+        var checked = [];
+        var libJournalsCheckBox = $(".libjournals-checkbox");       
+        libJournalsCheckBox.each(function () {
+            if ($(this).is(" :checked")) {
+                checked.push($(this).attr('field-id'));
+            }
+        });
+        $.ajax({
+            url: 'scripts/php/journals/delete.php', method: 'POST', data: { 'checked': checked }, success: function (response) {
+                response = jQuery.parseJSON(response);
+                $.growl(response);
+                if (!response.error) {
+                    setTimeout(function () {
+                        window.location.reload(true);
+                    }, 2000);
+                }
+            }, error: function () {
+                $.growl({ title: "Internal Error!", message: 'Unable to perform a ajax request', style: 'error', location: 'tc' });
             }
         });
     });

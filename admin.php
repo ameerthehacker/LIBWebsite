@@ -162,7 +162,78 @@ if(!isset($_SESSION['user'])){
                     ?>
                 </div>
                 <div id="journals" class='tab-pane fade in'>
-                
+                      <form class="form-inline pull-right" onsubmit="return false">
+                            <div class="form-group">
+                                <div class="col-lg-2">
+                                    <button id="btn-journals-delete" class="btn btn-danger form-control">Delete</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-2">
+                                    <button id="btn-journals-selectall" class="btn btn-primary form-control">Select All</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-2">
+                                    <button id="btn-journals-invert" class="btn btn-primary form-control">Invert</button>
+                                </div>
+                            </div>
+                        </form>
+                    <?php
+                    require_once('include/connect.inc.php');
+                    $tableHeader="<table id='libjournals' class='table table-stripped table-hover'>
+                                    <thead>
+                                         <th>#</th>
+                                         <th>Journal Name</th>
+                                         <th>Journal Title</th>
+                                         <th>Authors</th>
+                                         <th>Journal Date</th>
+                                         <th>Impact Factor</th>                                                             
+                                         <th>PDF</th>
+                                    </thead>";
+                    $tableFooter="<tfoot>
+                                    <th>#</th>                                  
+                                    <th>Journal Name</th>
+                                    <th>Journal Title</th>
+                                    <th>Authors</th>
+                                    <th>Journal Date</th>
+                                    <th>Impact Factor</th>                                    
+                                    <th>PDF</th>
+                                  </tfoot>
+                                </table>";
+
+                    $tableBody="<tbody>";
+                    $sql="SELECT * FROM libjournals";
+                    if($result=mysql_query($sql)){
+                        while($journal=mysql_fetch_assoc($result)){
+                            $journalAuthors=[];
+                            $sql="SELECT u.username FROM journal_authors j JOIN libusers u ON j.userid=u.id AND j.journalid='$journal[id]'";
+                            if($author_result=mysql_query($sql)){
+                                while($author=mysql_fetch_assoc($author_result)){
+                                    array_push($journalAuthors,$author['username']);
+                                }
+                                $journalAuthors=implode(",",$journalAuthors);
+                            }
+                            $pdfButton="<div class='input-group'>
+                                            <div class='input-group-btn'>
+                                                <a href='scripts/php/journals/pdf/$journal[id].pdf' target='_blank' class='btn btn-primary'><span class='glyphicon glyphicon-eye-open'></span></a>
+                                                <a href='#' class='btn btn-warning'><span class='glyphicon glyphicon-pencil'></span></a>                                        
+                                            </div>
+                                        </div>";
+                            $tableBody.="<tr field-id='$journal[id]' class='libjournals-row'>
+                                            <td><input type='checkbox' class='libjournals-checkbox' field-id='$journal[id]'/></td>
+                                            <td class='field'>$journal[journalname]</td>
+                                            <td class='field'>$journal[journaltitle]</td>
+                                            <td class='field'>$journalAuthors</td>
+                                            <td class='field'>$journal[pdate]</td>
+                                            <td class='field'>$journal[impactfactor]</td>
+                                            <td class='field'>$pdfButton</td>
+                                         </tr>";
+                        }
+                        $tableBody.="</tbody>";
+                    }
+                    echo($tableHeader.$tableBody.$tableFooter);
+                    ?>
                 </div>
             </div>
         </div>
@@ -226,6 +297,61 @@ if(!isset($_SESSION['user'])){
                     </div>
                     <div class="modal-footer">
                         <button id="btn-journals-add" class="btn btn-success">Add</button>
+                        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal For editing journal-->
+
+        <div class="modal fade" id="modal-journals-update">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h4>Edit Journal</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="scripts/php/journals/update.php" method="post" class="form-horizontal" id="form-journals-add" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="" class="control-label col-lg-3">Journal Name</label>
+                                <div class="col-lg-9">
+                                    <input id="journalname" type="text" class="form-control" name="journalname" placeholder="Name of the jounral"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-lg-3">Journal Title</label>
+                                <div class="col-lg-9">
+                                    <input id="journaltitle" type="text" class="form-control" name="journaltitle" placeholder="Title of the jounral"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-lg-3">Journal Authors</label>
+                                <div class="col-lg-9">
+                                    <input  id="journalauthors" type="text" name="authors" class="form-control" placeholder="ID of the authors"/>                                    
+                                </div>
+                            </div>
+                            <div class="form-group" id="suggest-journals-authors" style="visibility:hidden;display:none">
+                                <div class="col-lg-12 text-center">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-lg-3">Journal Date</label>
+                                <div class="col-lg-9">
+                                    <input id="journaldate" type="text" class="form-control" name="pdate" placeholder="Date of the jounral" readonly/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-lg-3">Impact Factor</label>
+                                <div class="col-lg-9">
+                                    <input id="journalimpact" type="text" class="form-control" name="impactfactor" placeholder="Impact Factor of the jounral"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn-journals-update" class="btn btn-success">Update</button>
                         <button class="btn btn-danger" data-dismiss="modal">Cancel</button>                        
                     </div>
                 </div>

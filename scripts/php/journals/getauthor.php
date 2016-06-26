@@ -5,26 +5,15 @@ require_once('../../../include/connect.inc.php');
 
 if(isset($_SESSION['user'])){
     if(isset($_POST['id'])){
-
-        $condition="";
-        foreach ($_POST['id'] as $value) {
-            if($condition==""){
-                $condition="id='".$value."'";
-            }
-            else{
-                $condition.=" OR id='".$value."'";
-            }
-        }
-        $sql="SELECT * FROM libusers WHERE $condition";
+        $sql="SELECT userid FROM journal_authors WHERE journalid='$_POST[id]'";
         if($result=mysql_query($sql)){
-            $response=['found'=>false,'authors'=>[]];                
+            $response=['found'=>true,'authors'=>[]];
             while($record=mysql_fetch_assoc($result)){
-                $response['found']=true;
-                array_push($response['authors'],$record['username']);                
+                array_push($response['authors'],$record['userid']);
             }
         }
         else{
-            $response=['found'=>false];
+            $response=['found'=>false];            
         }
     }   
 }
