@@ -79,7 +79,7 @@
                                 <input type="text" name="username" class="form-control" placeholder="Usernmae"/>
                             </div><!--form-control-->
                             <div class="form-group">
-                                <input type="password" name="password" class="form-control" placeholder="password"/>
+                                <input type="password" name="password" class="form-control" placeholder="Password"/>
                             </div><!--form-control-->
                             <div class="form-group">
                                 <button class="btn btn-primary form-control" type="submit" name="submit">Submit</button>                                                              

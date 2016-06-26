@@ -63,6 +63,12 @@ if(!isset($_SESSION['user'])){
                             </ul>
                         </li>
                         <li class="dropdown">
+                            <a role="button" class="dropdown-toggle" data-toggle="dropdown">Journals <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a role="button" href="#" data-toggle="modal" data-target="#modal-journals-add">New Journal</a></li>                                                                                                
+                            </ul>
+                        </li>
+                        <li class="dropdown">
                             <a role="button" class="dropdown-toggle" data-toggle="dropdown">
                                 <span class="glyphicon glyphicon-user"></span>
                                 <?php
@@ -94,6 +100,9 @@ if(!isset($_SESSION['user'])){
                 </li>
                 <li>
                     <a href="#users" data-toggle="tab">Users</a>
+                </li>
+                <li>
+                    <a href="#journals" data-toggle="tab">Journals</a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -152,10 +161,76 @@ if(!isset($_SESSION['user'])){
                     echo($html);
                     ?>
                 </div>
+                <div id="journals" class='tab-pane fade in'>
+                
+                </div>
             </div>
         </div>
         
         <!--Modals For the page-->
+
+        <!--Modal For new journal-->
+
+        <div class="modal fade" id="modal-journals-add">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h4>Add a Journal</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="scripts/php/journals/add.php" method="post" class="form-horizontal" id="form-journals-add" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="" class="control-label col-lg-3">Journal Name</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" name="journalname" placeholder="Name of the jounral"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-lg-3">Journal Title</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" name="journaltitle" placeholder="Title of the jounral"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-lg-3">Journal Authors</label>
+                                <div class="col-lg-9">
+                                    <input id="text-journals-authors" type="text" name="authors" class="form-control" placeholder="ID of the authors"/>                                    
+                                </div>
+                            </div>
+                            <div class="form-group" id="suggest-journals-authors" style="visibility:hidden;display:none">
+                                <div class="col-lg-12 text-center">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-lg-3">Journal Date</label>
+                                <div class="col-lg-9">
+                                    <input id="text-journals-date" type="text" class="form-control" name="pdate" placeholder="Date of the jounral" readonly/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-lg-3">Impact Factor</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" name="impactfactor" placeholder="Impact Factor of the jounral"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="file" name="pdf" style="visibility:hidden;display:none" id="file-journals-pdf">
+                                <label class="control-label col-lg-3">PDF File</label>
+                                <label id="label-journals-pdf" class="control-label col-lg-7">Browse File...</label>      
+                                <div class="col-lg-2">
+                                    <button class="btn btn-primary form-control" id="btn-journals-pdf">browse</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn-journals-add" class="btn btn-success">Add</button>
+                        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>                        
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!--Modal for changing the admin password-->
 
@@ -251,7 +326,7 @@ if(!isset($_SESSION['user'])){
                             </div>
                             <div class="radio">
                                 <label class="control-label col-lg-2">
-                                    <input type="radio" checked="true" name="issuedate" value="today"/>
+                                    <input type="radio" checked="true" name="issuedate" value="today"  readonly/>
                                     Today
                                 </label>
                                 <label class="control-label col-lg-2">

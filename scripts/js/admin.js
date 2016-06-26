@@ -4,6 +4,7 @@ $(function () {
 
     var formUsersAdd = $("#form-users-add");
     var formBooksAdd = $("#form-books-add");
+    var formJournalsAdd = $("#form-journals-add");    
     var formUsersUpdate = $("#form-users-update");
     var formBooksUpdate = $("#form-books-update");
     var formUsersCSV = $("#form-users-csv");
@@ -14,14 +15,18 @@ $(function () {
 
     var fileUsersCSV = $("#file-users-csv");
     var fileBooksCSV = $("#file-books-csv");
+    var fileJournalsPDF=$("#file-journals-pdf");
 
     var labelUsersCSV = $("#label-users-csv");
     var labelBooksCSV = $("#label-books-csv");
+    var labelJournalsPDF = $("#label-journals-pdf");    
 
     var textBooksIssueDate = $("#text-books-issue-date");
     var textBooksIssueID = $("#text-books-issue-id");
     var textUsersIssueID = $("#text-users-issue-id");
     var textBooksReturnID = $("#text-books-return-id");
+    var textJournalsAuthors=$("#text-journals-authors");
+    var textJournalsDate = $("#text-journals-date");    
 
 
     var btnBooksAdd = $("#btn-books-add");
@@ -39,22 +44,26 @@ $(function () {
     var btnBooksBrowseCSV = $("#btn-books-browse-csv");
     var btnUsersCSV = $("#btn-users-csv");
     var btnBooksCSV = $("#btn-books-csv");
+    var btnJournalsPDF=$("#btn-journals-pdf");
     var btnUsersDelete = $("#btn-users-delete");
     var btnUsersSelectAll = $("#btn-users-selectall");
     var btnUsersInvert = $("#btn-users-invert");
     var btnUsersUpdate = $("#btn-users-update");
+
+    var btnJournalsAdd=$("#btn-journals-add");
 
     var modalUsersUpdate = $("#modal-users-update");
     var modalBooksUpdate = $("#modal-books-update");
 
 
 
-    var adminTabs = $("#admin-tabs");
     var libBooks = $("#libbooks");
     var libUsers = $("#libusers");
     
     var libBooksRow = $(".libbooks-row");
     var libUsersRow = $(".libusers-row");
+
+    var suggestJournalsAuthors=$("#suggest-journals-authors");
 
     var selectedUser = {};
     var selectedBook = {};
@@ -67,6 +76,7 @@ $(function () {
 
     formUsersAdd.ajaxForm();
     formBooksAdd.ajaxForm();
+    formJournalsAdd.ajaxForm();
     formUsersUpdate.ajaxForm();
     formUsersCSV.ajaxForm();
 
@@ -77,9 +87,8 @@ $(function () {
     textBooksIssueDate.datepicker({
         dateFormat: 'yy-mm-dd'
     });
-
-    textBooksIssueDate.on('keypress', function (evt) {
-        evt.preventDefault();
+    textJournalsDate.datepicker({
+        dateFormat: 'yy-mm-dd'
     });
 
     btnBooksRenew.on('click', function (evt) {
@@ -125,7 +134,6 @@ $(function () {
         });
     });
 
-
     textUsersIssueID.on('keyup', function (evt) {
         $.ajax({
             url: 'scripts/php/users/detail.php',
@@ -148,6 +156,37 @@ $(function () {
             }
         });
     });
+
+    textJournalsAuthors.on('keyup',function(evt){
+        var listOfAuthors=textJournalsAuthors.val();
+        var authors=listOfAuthors.split(",");
+        if(listOfAuthors!=""){
+            $.ajax({
+                url:'scripts/php/journals/getauthor.php',
+                method:'post',
+                data:{id:authors},
+                success:function(response){
+                    response=jQuery.parseJSON(response);
+                    if(response.found){
+                        suggestJournalsAuthors.css({'visibility':'visible','display':'block'});
+                        suggestJournalsAuthors.children().text(response.authors);
+                    }
+                    else{
+                        suggestJournalsAuthors.children().text("");
+                        suggestJournalsAuthors.css({'visibility':'hidden','display':'none'});               
+                    }
+                },
+                error:function(error){
+                    $.growl(ajaxError);
+                }
+            });
+        }
+        else{
+            suggestJournalsAuthors.children().text("");
+            suggestJournalsAuthors.css({'visibility':'hidden','display':'none'});                                  
+        }
+    });
+
 
     textBooksReturnID.on('keyup', function (evt) {
         $.ajax({
@@ -197,6 +236,9 @@ $(function () {
     btnBooksBrowseCSV.on('click', function (evt) {
         fileBooksCSV.trigger('click');
     });
+    btnJournalsPDF.on('click',function(evt){
+        fileJournalsPDF.trigger('click');
+    });
 
     fileUsersCSV.on('change', function (evt) {
         labelUsersCSV.text(fileUsersCSV[0].files[0].name);
@@ -204,6 +246,9 @@ $(function () {
 
     fileBooksCSV.on('change', function (evt) {
         labelBooksCSV.text(fileBooksCSV[0].files[0].name);
+    });
+    fileJournalsPDF.on('change',function(evt){
+        labelJournalsPDF.text(fileJournalsPDF[0].files[0].name);
     });
 
     btnBooksIssue.on('click', function (evt) {
@@ -407,6 +452,15 @@ $(function () {
             },
             error:function(){
                 $.growl(ajaxError);
+            }
+        });
+    });
+
+    btnJournalsAdd.on('click',function(evt){
+        formJournalsAdd.ajaxSubmit({
+            success:function(response){
+                response=jQuery.parseJSON(response);
+                $.growl(response);
             }
         });
     });
