@@ -187,7 +187,7 @@ if(!isset($_SESSION['user'])){
                                          <th>Journal Name</th>
                                          <th>Journal Title</th>
                                          <th>Authors</th>
-                                         <th>Journal Date</th>
+                                         <th>Acadamic Year</th>
                                          <th>Impact Factor</th>                                                             
                                          <th>PDF</th>
                                     </thead>";
@@ -196,7 +196,7 @@ if(!isset($_SESSION['user'])){
                                     <th>Journal Name</th>
                                     <th>Journal Title</th>
                                     <th>Authors</th>
-                                    <th>Journal Date</th>
+                                    <th>Acadamic Year</th>
                                     <th>Impact Factor</th>                                    
                                     <th>PDF</th>
                                   </tfoot>
@@ -225,7 +225,7 @@ if(!isset($_SESSION['user'])){
                                             <td class='field'>$journal[journalname]</td>
                                             <td class='field'>$journal[journaltitle]</td>
                                             <td class='field'>$journalAuthors</td>
-                                            <td class='field'>$journal[pdate]</td>
+                                            <td class='field'>$journal[year_from]-$journal[year_to]</td>
                                             <td class='field'>$journal[impactfactor]</td>
                                             <td class='field'>$pdfButton</td>
                                          </tr>";
@@ -274,9 +274,24 @@ if(!isset($_SESSION['user'])){
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label col-lg-3">Journal Date</label>
+                                <label for="" class="control-label col-lg-3">Acadamic Year</label>
+                                <div class="col-lg-4">
+                                    <input id="text-journals-date" type="text" class="form-control" name="year_from" placeholder="From Year"/>
+                                </div>
+                                <div class="col-lg-4">
+                                    <input id="text-journals-date" type="text" class="form-control" name="year_to" placeholder="To Year"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-lg-3">Volume</label>
                                 <div class="col-lg-9">
-                                    <input id="text-journals-date" type="text" class="form-control" name="pdate" placeholder="Date of the jounral" readonly/>
+                                    <input id="journalvolume" type="text" class="form-control" name="volume" placeholder="Volume of the jounral"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="control-label col-lg-3">Issue</label>
+                                <div class="col-lg-9">
+                                    <input id="journalissue" type="text" class="form-control" name="issue" placeholder="Issue of the jounral"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -313,7 +328,7 @@ if(!isset($_SESSION['user'])){
                         <h4>Edit Journal</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="scripts/php/journals/update.php" method="post" class="form-horizontal" id="form-journals-add" enctype="multipart/form-data">
+                        <form action="scripts/php/journals/update.php" method="post" class="form-horizontal" id="form-journals-update" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="" class="control-label col-lg-3">Journal Name</label>
                                 <div class="col-lg-9">
