@@ -17,6 +17,14 @@ if(isset($_SESSION['user'])){
         }
     }
 
+    //Check proper academinc year
+
+    if($_POST['year_from']>$_POST['year_to']){
+        $response=['title'=>'Sorry!','message'=>'Invalid academic year interval','style'=>'error','location'=>'tc'];
+        echo(json_encode($response));        
+        exit();
+    }
+
     //Check the authors exist
 
     $authors=explode(",",$_POST['authors']);
@@ -39,7 +47,7 @@ if(isset($_SESSION['user'])){
 
     //Insert the jounrnal
 
-    $sql="INSERT INTO libjournals VALUES('','$_POST[journalname]','$_POST[journaltitle]','$_POST[year_from]','$_POST[year_to]','$_POST[issue]','$_POST[volume]','$_POST[impactfactor]')";
+    $sql="INSERT INTO libjournals VALUES('','$_POST[journalname]','$_POST[journaltitle]','$_POST[month]','$_POST[year_from]','$_POST[year_to]','$_POST[issue]','$_POST[volume]','$_POST[impactfactor]')";
 
     if(!mysql_query($sql)){
         $response=['title'=>'Internal Error','message'=>mysql_error(),'style'=>'error','location'=>'tc'];

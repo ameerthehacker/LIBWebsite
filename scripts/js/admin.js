@@ -4,31 +4,29 @@ $(function () {
 
     var formUsersAdd = $("#form-users-add");
     var formBooksAdd = $("#form-books-add");
-    var formJournalsAdd = $("#form-journals-add");    
+    var formJournalsAdd = $("#form-journals-add");
     var formUsersUpdate = $("#form-users-update");
     var formBooksUpdate = $("#form-books-update");
-    var formJournalsUpdate=$("#form-journals-update");
+    var formJournalsUpdate = $("#form-journals-update");
     var formUsersCSV = $("#form-users-csv");
     var formBooksCSV = $("#form-books-csv");
     var formBooksIssue = $("#form-books-issue");
     var formBooksReturn = $("#form-books-return");
-    var formAdminsChangePassword=$("#form-admins-change-password");
+    var formAdminsChangePassword = $("#form-admins-change-password");
 
     var fileUsersCSV = $("#file-users-csv");
     var fileBooksCSV = $("#file-books-csv");
-    var fileJournalsPDF=$("#file-journals-pdf");
+    var fileJournalsPDF = $("#file-journals-pdf");
 
     var labelUsersCSV = $("#label-users-csv");
     var labelBooksCSV = $("#label-books-csv");
-    var labelJournalsPDF = $("#label-journals-pdf");    
+    var labelJournalsPDF = $("#label-journals-pdf");
 
     var textBooksIssueDate = $("#text-books-issue-date");
     var textBooksIssueID = $("#text-books-issue-id");
     var textUsersIssueID = $("#text-users-issue-id");
     var textBooksReturnID = $("#text-books-return-id");
-    var textJournalsAuthors=$("#text-journals-authors");
-    var textJournalsDate = $("#text-journals-date");    
-
+    var textJournalsAuthors = $("#text-journals-authors");
 
     var btnBooksAdd = $("#btn-books-add");
     var btnBooksDelete = $("#btn-books-delete");
@@ -38,42 +36,42 @@ $(function () {
     var btnBooksIssue = $("#btn-books-issue");
     var btnBooksReturn = $("#btn-books-return");
     var btnBooksRenew = $("#btn-books-renew");
-    var btnAdminsChangePassword=$("#btn-admins-change-password");    
+    var btnAdminsChangePassword = $("#btn-admins-change-password");
 
     var btnUsersAdd = $("#btn-users-add");
     var btnUsersBrowseCSV = $("#btn-users-browse-csv");
     var btnBooksBrowseCSV = $("#btn-books-browse-csv");
     var btnUsersCSV = $("#btn-users-csv");
     var btnBooksCSV = $("#btn-books-csv");
-    var btnJournalsPDF=$("#btn-journals-pdf");
+    var btnJournalsPDF = $("#btn-journals-pdf");
     var btnUsersDelete = $("#btn-users-delete");
     var btnUsersSelectAll = $("#btn-users-selectall");
     var btnUsersInvert = $("#btn-users-invert");
     var btnUsersUpdate = $("#btn-users-update");
 
-    var btnJournalsAdd=$("#btn-journals-add");
+    var btnJournalsAdd = $("#btn-journals-add");
     var btnJournalsDelete = $("#btn-journals-delete");
-    var btnJournalsUpdate = $("#btn-journals-update");    
+    var btnJournalsUpdate = $("#btn-journals-update");
     var btnJournalsSelectAll = $("#btn-journals-selectall");
     var btnJournalsInvert = $("#btn-journals-invert");
 
     var modalUsersUpdate = $("#modal-users-update");
     var modalBooksUpdate = $("#modal-books-update");
-    var modalJournalsUpdate = $("#modal-journals-update");    
+    var modalJournalsUpdate = $("#modal-journals-update");
 
     var libBooks = $("#libbooks");
     var libUsers = $("#libusers");
     var libJournals = $("#libjournals");
-    
+
     var libBooksRow = $(".libbooks-row");
     var libUsersRow = $(".libusers-row");
-    var libJournalsRow=$(".libjournals-row");
+    var libJournalsRow = $(".libjournals-row");
 
-    var suggestJournalsAuthors=$("#suggest-journals-authors");
+    var suggestJournalsAuthors = $("#suggest-journals-authors");
 
     var selectedUser = {};
     var selectedBook = {};
-    var selectedJournal={};
+    var selectedJournal = {};
     var availableBooks = [];
 
     libBooks.dataTable();
@@ -95,13 +93,6 @@ $(function () {
 
     textBooksIssueDate.datepicker({
         dateFormat: 'yy-mm-dd'
-    });
-    textJournalsDate.datepicker({
-        dateFormat: 'yy-mm-dd'
-    });
-
-    $("#journaldate").datepicker({
-        dateFormat: 'yy-mm-dd'        
     });
 
     btnBooksRenew.on('click', function (evt) {
@@ -170,33 +161,33 @@ $(function () {
         });
     });
 
-    textJournalsAuthors.on('keyup',function(evt){
-        var listOfAuthors=textJournalsAuthors.val();
-        var authors=listOfAuthors.split(",");
-        if(listOfAuthors!=""){
+    textJournalsAuthors.on('keyup', function (evt) {
+        var listOfAuthors = textJournalsAuthors.val();
+        var authors = listOfAuthors.split(",");
+        if (listOfAuthors != "") {
             $.ajax({
-                url:'scripts/php/users/getusernames.php',
-                method:'post',
-                data:{id:authors},
-                success:function(response){
-                    response=jQuery.parseJSON(response);
-                    if(response.found){
-                        suggestJournalsAuthors.css({'visibility':'visible','display':'block'});
+                url: 'scripts/php/users/getusernames.php',
+                method: 'post',
+                data: { id: authors },
+                success: function (response) {
+                    response = jQuery.parseJSON(response);
+                    if (response.found) {
+                        suggestJournalsAuthors.css({ 'visibility': 'visible', 'display': 'block' });
                         suggestJournalsAuthors.children().text(response.authors);
                     }
-                    else{
+                    else {
                         suggestJournalsAuthors.children().text("");
-                        suggestJournalsAuthors.css({'visibility':'hidden','display':'none'});               
+                        suggestJournalsAuthors.css({ 'visibility': 'hidden', 'display': 'none' });
                     }
                 },
-                error:function(error){
+                error: function (error) {
                     $.growl(ajaxError);
                 }
             });
         }
-        else{
+        else {
             suggestJournalsAuthors.children().text("");
-            suggestJournalsAuthors.css({'visibility':'hidden','display':'none'});                                  
+            suggestJournalsAuthors.css({ 'visibility': 'hidden', 'display': 'none' });
         }
     });
 
@@ -249,7 +240,7 @@ $(function () {
     btnBooksBrowseCSV.on('click', function (evt) {
         fileBooksCSV.trigger('click');
     });
-    btnJournalsPDF.on('click',function(evt){
+    btnJournalsPDF.on('click', function (evt) {
         fileJournalsPDF.trigger('click');
     });
 
@@ -260,7 +251,7 @@ $(function () {
     fileBooksCSV.on('change', function (evt) {
         labelBooksCSV.text(fileBooksCSV[0].files[0].name);
     });
-    fileJournalsPDF.on('change',function(evt){
+    fileJournalsPDF.on('change', function (evt) {
         labelJournalsPDF.text(fileJournalsPDF[0].files[0].name);
     });
 
@@ -334,29 +325,69 @@ $(function () {
         modalBooksUpdate.modal('show');
     });
 
-    libJournalsRow.on('dblclick',function(evt){
+    libJournalsRow.on('dblclick', function (evt) {
         var fields = [];
         $(this).children('.field').each(function () {
             fields.push($(this).text());
         });
-        selectedJournal=$(this).attr('field-id');
+        selectedJournal = $(this).attr('field-id');
         $("#journalname").val(fields[0]);
         $("#journaltitle").val(fields[1]);
-        $("#journaldate").val(fields[3]);
-        $("#journalimpact").val(fields[4]);
+        $("#journalmonth").children('option').each(function () {
+            if ($(this).text() == fields[3]) {
+                $(this).attr('selected', 'selected');
+            }
+        });
+        var academicyear = fields[4].split("-");
+        $("#journalyearfrom").val(academicyear[0]);
+        $("#journalyearto").val(academicyear[1]);
+        $("#journalissue").val(fields[5]);
+        $("#journalvolume").val(fields[6]);
+        $("#journalimpact").val(fields[7]);
 
         $.ajax({
-            url:'scripts/php/journals/getauthor.php',
-            method:'post',
-            data:{id:selectedJournal},
-            success:function(response){
-                response=jQuery.parseJSON(response);
-                if(response.found){
+            url: 'scripts/php/journals/getauthor.php',
+            method: 'post',
+            data: { id: selectedJournal },
+            success: function (response) {
+                response = jQuery.parseJSON(response);
+                if (response.found) {
                     $("#journalauthors").val(response.authors);
-                    modalJournalsUpdate.modal('show');                    
+                    modalJournalsUpdate.modal('show');
+                    $("#journalauthors").on('keyup', function (evt) {
+                        var listOfAuthors = $("#journalauthors").val();
+                        var authors = listOfAuthors.split(",");
+                        var suggestJournalsAuthors = $("#suggest-journals-authors-for-update");
+                        if (listOfAuthors != "") {
+                            $.ajax({
+                                url: 'scripts/php/users/getusernames.php',
+                                method: 'post',
+                                data: { id: authors },
+                                success: function (response) {
+                                    response = jQuery.parseJSON(response);
+                                    if (response.found) {
+                                        suggestJournalsAuthors.css({ 'visibility': 'visible', 'display': 'block' });
+                                        suggestJournalsAuthors.children().text(response.authors);
+                                    }
+                                    else {
+                                        suggestJournalsAuthors.children().text("");
+                                        suggestJournalsAuthors.css({ 'visibility': 'hidden', 'display': 'none' });
+                                    }
+                                },
+                                error: function (error) {
+                                    $.growl(ajaxError);
+                                }
+                            });
+                        }
+                        else {
+                            suggestJournalsAuthors.children().text("");
+                            suggestJournalsAuthors.css({ 'visibility': 'hidden', 'display': 'none' });
+                        }
+                    });
+                    $("#journalauthors").trigger('keyup');
                 }
             },
-            error:function(error){
+            error: function (error) {
                 $.growl(ajaxError);
             }
         });
@@ -364,9 +395,9 @@ $(function () {
     });
 
     btnUsersInvert.on('click', function (evt) {
-        var libUsersCheckBox = $(".libusers-checkbox");                               
+        var libUsersCheckBox = $(".libusers-checkbox");
         libUsersCheckBox.each(function () {
-            if ($(this).is(" :checked") && $(this).css('visibility')=='visible') {
+            if ($(this).is(" :checked") && $(this).css('visibility') == 'visible') {
                 $(this).prop('checked', false);
             }
             else {
@@ -392,9 +423,9 @@ $(function () {
         });
     });
     btnUsersSelectAll.on('click', function (evt) {
-        var libUsersCheckBox = $(".libusers-checkbox");               
+        var libUsersCheckBox = $(".libusers-checkbox");
         libUsersCheckBox.each(function () {
-            if($(this).css('visibility')=='visible'){
+            if ($(this).css('visibility') == 'visible') {
                 $(this).prop('checked', true);
             }
         });
@@ -403,7 +434,7 @@ $(function () {
     btnBooksInvert.on('click', function (evt) {
         var libBooksCheckBox = $(".libbooks-checkbox");
         libBooksCheckBox.each(function () {
-            if ($(this).is(" :checked") && $(this).css('visibility')=='visible') {
+            if ($(this).is(" :checked") && $(this).css('visibility') == 'visible') {
                 $(this).prop('checked', false);
             }
             else {
@@ -414,7 +445,7 @@ $(function () {
 
     btnUsersDelete.on('click', function () {
         var checked = [];
-        var libUsersCheckBox = $(".libusers-checkbox");       
+        var libUsersCheckBox = $(".libusers-checkbox");
         libUsersCheckBox.each(function () {
             if ($(this).is(" :checked")) {
                 checked.push($(this).attr('field-id'));
@@ -436,10 +467,10 @@ $(function () {
     });
 
     btnBooksSelectAll.on('click', function (evt) {
-        var libBooksCheckBox = $(".libbooks-checkbox");        
+        var libBooksCheckBox = $(".libbooks-checkbox");
         libBooksCheckBox.each(function () {
-            if($(this).css('visibility')=='visible'){
-                $(this).prop('checked', true);                                
+            if ($(this).css('visibility') == 'visible') {
+                $(this).prop('checked', true);
             }
         });
     });
@@ -467,9 +498,9 @@ $(function () {
     });
 
     btnJournalsSelectAll.on('click', function (evt) {
-        var libJournalsCheckBox = $(".libjournals-checkbox");               
+        var libJournalsCheckBox = $(".libjournals-checkbox");
         libJournalsCheckBox.each(function () {
-            if($(this).css('visibility')=='visible'){
+            if ($(this).css('visibility') == 'visible') {
                 $(this).prop('checked', true);
             }
         });
@@ -478,7 +509,7 @@ $(function () {
     btnJournalsInvert.on('click', function (evt) {
         var libJournalsCheckBox = $(".libjournals-checkbox");
         libJournalsCheckBox.each(function () {
-            if ($(this).is(" :checked") && $(this).css('visibility')=='visible') {
+            if ($(this).is(" :checked") && $(this).css('visibility') == 'visible') {
                 $(this).prop('checked', false);
             }
             else {
@@ -496,9 +527,9 @@ $(function () {
         });
     });
 
-    btnJournalsDelete.on('click',function(evt){
+    btnJournalsDelete.on('click', function (evt) {
         var checked = [];
-        var libJournalsCheckBox = $(".libjournals-checkbox");       
+        var libJournalsCheckBox = $(".libjournals-checkbox");
         libJournalsCheckBox.each(function () {
             if ($(this).is(" :checked")) {
                 checked.push($(this).attr('field-id'));
@@ -530,35 +561,35 @@ $(function () {
         });
     });
 
-    btnAdminsChangePassword.on('click',function(evt){
+    btnAdminsChangePassword.on('click', function (evt) {
         formAdminsChangePassword.ajaxSubmit({
-            success:function(response){
-                response=jQuery.parseJSON(response);
+            success: function (response) {
+                response = jQuery.parseJSON(response);
                 $.growl(response);
             },
-            error:function(){
+            error: function () {
                 $.growl(ajaxError);
             }
         });
     });
 
-    btnJournalsAdd.on('click',function(evt){
+    btnJournalsAdd.on('click', function (evt) {
         formJournalsAdd.ajaxSubmit({
-            success:function(response){
-                response=jQuery.parseJSON(response);
+            success: function (response) {
+                response = jQuery.parseJSON(response);
                 $.growl(response);
             }
         });
     });
 
-    btnJournalsUpdate.on('click',function(evt){
+    btnJournalsUpdate.on('click', function (evt) {
         formJournalsUpdate.ajaxSubmit({
-            data:{'id':selectedJournal},
-            success:function(response){
-                response=jQuery.parseJSON(response);
+            data: { 'id': selectedJournal },
+            success: function (response) {
+                response = jQuery.parseJSON(response);
                 $.growl(response);
             },
-            error:function(error){
+            error: function (error) {
                 $.growl(ajaxError);
             }
         });

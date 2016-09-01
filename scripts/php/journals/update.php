@@ -12,6 +12,15 @@ if(isset($_SESSION['user'])){
         }
     }
 
+    //Check proper academinc year
+
+    if($_POST['year_from']>$_POST['year_to']){
+        $response=['title'=>'Sorry!','message'=>'Invalid academic year interval','style'=>'error','location'=>'tc'];
+        echo(json_encode($response));        
+        exit();
+    }
+
+
     //Check if the authors exist     
 
     $authors=explode(",",$_POST['authors']);
@@ -34,7 +43,7 @@ if(isset($_SESSION['user'])){
 
     //Update the journal
 
-    $sql="UPDATE libjournals SET journalname='$_POST[journalname]',journaltitle='$_POST[journaltitle]',pdate='$_POST[pdate]',impactfactor='$_POST[impactfactor]' WHERE id='$_POST[id]'";
+    $sql="UPDATE libjournals SET journalname='$_POST[journalname]',journaltitle='$_POST[journaltitle]',month='$_POST[month]',year_from='$_POST[year_from]',year_to='$_POST[year_to]',issue='$_POST[issue]',volume='$_POST[volume]',impactfactor='$_POST[impactfactor]' WHERE id='$_POST[id]'";
     if(mysql_query($sql)){
 
         //Update the authors
