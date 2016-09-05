@@ -13,14 +13,17 @@ $(function () {
     var formBooksIssue = $("#form-books-issue");
     var formBooksReturn = $("#form-books-return");
     var formAdminsChangePassword = $("#form-admins-change-password");
+    var formJournalsUpdatePDF=$("#form-journals-update-pdf");
 
     var fileUsersCSV = $("#file-users-csv");
     var fileBooksCSV = $("#file-books-csv");
     var fileJournalsPDF = $("#file-journals-pdf");
+    var fileJournalsUpdatePDF=$("#file-journals-update-pdf");
 
     var labelUsersCSV = $("#label-users-csv");
     var labelBooksCSV = $("#label-books-csv");
     var labelJournalsPDF = $("#label-journals-pdf");
+    var labelJorunalsUpdatePDF=$("#label-journals-update-pdf");
 
     var textBooksIssueDate = $("#text-books-issue-date");
     var textBooksIssueID = $("#text-books-issue-id");
@@ -48,12 +51,15 @@ $(function () {
     var btnUsersSelectAll = $("#btn-users-selectall");
     var btnUsersInvert = $("#btn-users-invert");
     var btnUsersUpdate = $("#btn-users-update");
+    var btnJournalsUpdatePDF=$("#btn-journals-update-pdf");
+    var btnJournalsChangePDF=$("#btn-journals-change-pdf");
 
     var btnJournalsAdd = $("#btn-journals-add");
     var btnJournalsDelete = $("#btn-journals-delete");
     var btnJournalsUpdate = $("#btn-journals-update");
     var btnJournalsSelectAll = $("#btn-journals-selectall");
     var btnJournalsInvert = $("#btn-journals-invert");
+    var btnJournalsBrowseUpdatePDF=$("#btn-journals-browse-update-pdf");
 
     var modalUsersUpdate = $("#modal-users-update");
     var modalBooksUpdate = $("#modal-books-update");
@@ -85,6 +91,7 @@ $(function () {
     formJournalsAdd.ajaxForm();
     formUsersUpdate.ajaxForm();
     formJournalsUpdate.ajaxForm();
+    formJournalsUpdatePDF.ajaxForm();
     formUsersCSV.ajaxForm();
 
     formBooksCSV.ajaxForm();
@@ -253,6 +260,9 @@ $(function () {
     });
     fileJournalsPDF.on('change', function (evt) {
         labelJournalsPDF.text(fileJournalsPDF[0].files[0].name);
+    });
+    fileJournalsUpdatePDF.on('change',function(evt){
+        labelJorunalsUpdatePDF.text(fileJournalsUpdatePDF[0].files[0].name);
     });
 
     btnBooksIssue.on('click', function (evt) {
@@ -518,11 +528,32 @@ $(function () {
         });
     });
 
+    btnJournalsBrowseUpdatePDF.on('click',function(evt){
+        fileJournalsUpdatePDF.trigger('click');
+    });
+
+    btnJournalsChangePDF.on('click',function(evt){
+        selectedJournal=$(this).attr('journal-id');
+    });
+
     btnUsersAdd.on('click', function (evt) {
         formUsersAdd.ajaxSubmit({
             success: function (response) {
                 response = jQuery.parseJSON(response);
                 $.growl(response);
+            }
+        });
+    });
+
+    btnJournalsUpdatePDF.on('click',function(evt){
+        formJournalsUpdatePDF.ajaxSubmit({
+            data:{'id':selectedJournal},
+            success:function(resp){
+                resp=jQuery.parseJSON(resp);
+                $.growl(resp);
+
+            },error:function(){
+                $.growl(ajaxError);
             }
         });
     });

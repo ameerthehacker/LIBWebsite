@@ -225,7 +225,7 @@ if(!isset($_SESSION['user'])){
                             $pdfButton="<div class='input-group'>
                                             <div class='input-group-btn'>
                                                 <a href='scripts/php/journals/pdf/$journal[id].pdf' target='_blank' class='btn btn-primary'><span class='glyphicon glyphicon-eye-open'></span></a>
-                                                <a href='#' class='btn btn-warning'><span class='glyphicon glyphicon-pencil'></span></a>                                        
+                                                <a href='#' id='btn-journals-change-pdf' journal-id='$journal[id]' data-toggle='modal' data-target='#modal-journals-update-pdf' class='btn btn-warning'><span class='glyphicon glyphicon-pencil'></span></a>                                        
                                             </div>
                                         </div>";
                             $tableBody.="<tr field-id='$journal[id]' class='libjournals-row'>
@@ -315,7 +315,7 @@ if(!isset($_SESSION['user'])){
                             <div class="form-group">
                                 <label for="" class="control-label col-lg-3">Volume</label>
                                 <div class="col-lg-9">
-                                    <input  type="text" class="form-control" name="volume" placeholder="Volume of the jounral" />
+                                    <input type="text" class="form-control" name="volume" placeholder="Volume of the jounral" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -342,6 +342,34 @@ if(!isset($_SESSION['user'])){
                     </div>
                     <div class="modal-footer">
                         <button id="btn-journals-add" class="btn btn-success">Add</button>
+                        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal For updating journal pdf-->
+
+        <div class="modal fade" id="modal-journals-update-pdf">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                         <button class="close" data-dismiss="modal">&times;</button>
+                         <h4>Change Journal PDF</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-journals-update-pdf" action="scripts/php/journals/updatepdf.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                            <input type="file" name="pdf" id="file-journals-update-pdf" style="display:none;visibility:hidden"/>
+                            <div class="form-group">
+                                <label id="label-journals-update-pdf" for="" class="col-lg-10 text-center">Browse PDF...</label>
+                                <div class="col-lg-2">
+                                    <button type="button" id="btn-journals-browse-update-pdf" class="btn btn-success">Browse</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn-journals-update-pdf" class="btn btn-success">Update</button>
                         <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
