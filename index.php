@@ -49,16 +49,38 @@
     		</div>
     	</div>
         <div class="container-fluid">
-            <form id="form-books-search" class="form-horizontal" method="get" action="">
+            <form id="form-books-search" class="form-horizontal" method="get" onsubmit="return false">
+                <div class="form-group">
+                    <div class="col-lg-offset-1 col-lg-10">
+                     <div class="radio-inline">
+                            <label>
+                                <input type="radio" name="type" value="books" checked/>
+                                Books
+                            </label>
+                        </div>
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" name="type" value="journals"/>
+                                Journals
+                            </label>
+                        </div>
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" name="type" value="conferences"/>
+                                Author
+                            </label>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="col-lg-offset-1 col-lg-10">
                         <div class="input-group">
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-search"></span>
                             </div>
-                            <input type="text" name="keyword" class="form-control" placeholder="Search Library"/>
+                            <input id="text-keyword" type="search" name="keyword" class="form-control" placeholder="Search Library"/>
                             <span class="input-group-btn">
-                                <button id="btn-books-search" type="submit" class="btn btn-primary">Search</button>
+                                <button id="btn-books-search" type="button" class="btn btn-primary">Search</button>
                             </span>
                         </div>
                     </div>
@@ -73,8 +95,8 @@
                         </div>
                         <div class="radio-inline">
                             <label>
-                                <input type="radio" name="category" value="bookname" checked/>
-                                Book Name
+                                <input type="radio" name="category" value="name" checked/>
+                                Name
                             </label>
                         </div>
                         <div class="radio-inline">

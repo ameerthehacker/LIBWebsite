@@ -13,17 +13,17 @@ $(function () {
     var formBooksIssue = $("#form-books-issue");
     var formBooksReturn = $("#form-books-return");
     var formAdminsChangePassword = $("#form-admins-change-password");
-    var formJournalsUpdatePDF=$("#form-journals-update-pdf");
+    var formJournalsUpdatePDF = $("#form-journals-update-pdf");
 
     var fileUsersCSV = $("#file-users-csv");
     var fileBooksCSV = $("#file-books-csv");
     var fileJournalsPDF = $("#file-journals-pdf");
-    var fileJournalsUpdatePDF=$("#file-journals-update-pdf");
+    var fileJournalsUpdatePDF = $("#file-journals-update-pdf");
 
     var labelUsersCSV = $("#label-users-csv");
     var labelBooksCSV = $("#label-books-csv");
     var labelJournalsPDF = $("#label-journals-pdf");
-    var labelJorunalsUpdatePDF=$("#label-journals-update-pdf");
+    var labelJorunalsUpdatePDF = $("#label-journals-update-pdf");
 
     var textBooksIssueDate = $("#text-books-issue-date");
     var textBooksIssueID = $("#text-books-issue-id");
@@ -51,15 +51,15 @@ $(function () {
     var btnUsersSelectAll = $("#btn-users-selectall");
     var btnUsersInvert = $("#btn-users-invert");
     var btnUsersUpdate = $("#btn-users-update");
-    var btnJournalsUpdatePDF=$("#btn-journals-update-pdf");
-    var btnJournalsChangePDF=$("#btn-journals-change-pdf");
+    var btnJournalsUpdatePDF = $("#btn-journals-update-pdf");
+    var btnJournalsChangePDF = $("#btn-journals-change-pdf");
 
     var btnJournalsAdd = $("#btn-journals-add");
     var btnJournalsDelete = $("#btn-journals-delete");
     var btnJournalsUpdate = $("#btn-journals-update");
     var btnJournalsSelectAll = $("#btn-journals-selectall");
     var btnJournalsInvert = $("#btn-journals-invert");
-    var btnJournalsBrowseUpdatePDF=$("#btn-journals-browse-update-pdf");
+    var btnJournalsBrowseUpdatePDF = $("#btn-journals-browse-update-pdf");
 
     var modalUsersUpdate = $("#modal-users-update");
     var modalBooksUpdate = $("#modal-books-update");
@@ -261,7 +261,7 @@ $(function () {
     fileJournalsPDF.on('change', function (evt) {
         labelJournalsPDF.text(fileJournalsPDF[0].files[0].name);
     });
-    fileJournalsUpdatePDF.on('change',function(evt){
+    fileJournalsUpdatePDF.on('change', function (evt) {
         labelJorunalsUpdatePDF.text(fileJournalsUpdatePDF[0].files[0].name);
     });
 
@@ -528,12 +528,12 @@ $(function () {
         });
     });
 
-    btnJournalsBrowseUpdatePDF.on('click',function(evt){
+    btnJournalsBrowseUpdatePDF.on('click', function (evt) {
         fileJournalsUpdatePDF.trigger('click');
     });
 
-    btnJournalsChangePDF.on('click',function(evt){
-        selectedJournal=$(this).attr('journal-id');
+    btnJournalsChangePDF.on('click', function (evt) {
+        selectedJournal = $(this).attr('journal-id');
     });
 
     btnUsersAdd.on('click', function (evt) {
@@ -545,14 +545,14 @@ $(function () {
         });
     });
 
-    btnJournalsUpdatePDF.on('click',function(evt){
+    btnJournalsUpdatePDF.on('click', function (evt) {
         formJournalsUpdatePDF.ajaxSubmit({
-            data:{'id':selectedJournal},
-            success:function(resp){
-                resp=jQuery.parseJSON(resp);
+            data: { 'id': selectedJournal },
+            success: function (resp) {
+                resp = jQuery.parseJSON(resp);
                 $.growl(resp);
 
-            },error:function(){
+            }, error: function () {
                 $.growl(ajaxError);
             }
         });

@@ -3,6 +3,9 @@ $(function(){
     var formBooksSearch=$("#form-books-search");
     var btnBooksSearch=$("#btn-books-search");
     var divBooksResult=$("#div-books-result");
+    var textKeyword=$("#text-keyword");
+
+    alert('hi');
 
     formBooksSearch.ajaxForm();
     
@@ -30,5 +33,6 @@ $(function(){
             }
         });
     });
+
 
 });
