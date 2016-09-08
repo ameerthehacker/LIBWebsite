@@ -67,7 +67,7 @@
                         <div class="radio-inline">
                             <label>
                                 <input type="radio" name="type" value="conferences"/>
-                                Author
+                                Conferences
                             </label>
                         </div>
                     </div>

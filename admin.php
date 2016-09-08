@@ -68,6 +68,7 @@ if(!isset($_SESSION['user'])){
                             <a role="button" class="dropdown-toggle" data-toggle="dropdown">Journals <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a role="button" href="#" data-toggle="modal" data-target="#modal-journals-add">New Journal</a></li>
+                                <li><a role="button" href="#" data-toggle="modal" data-target="#modal-journals-download">Download</a></li>                                
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -250,6 +251,35 @@ if(!isset($_SESSION['user'])){
         </div>
 
         <!--Modals For the page-->
+
+        <!--Modal for Zip Download-->
+        <div class="modal fade" id="modal-journals-download">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h4>Add a Journal</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-journals-download" action="scripts/php/journals/zip.php" method="POST" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="" class="control-label col-lg-4">Academic Year</label>
+                                <div class="col-lg-4">
+                                    <input class="form-control" type="text" name="year_from" placeholder="From Year"/>
+                                </div>
+                                <div class="col-lg-4">
+                                    <input class="form-control" type="text" name="year_to" placeholder="To Year"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="btn-journals-download" class="btn btn-success">Add</button>
+                        <button class="btn btn-danger" data-dismiss="modal">Cancel</button> 
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!--Modal For adding journal-->
 

@@ -24,9 +24,10 @@ if(isset($_GET['type'])&&isset($_GET['category'])&&isset($_GET['keyword'])){
         $html=$result->drawTable(['Book Name','ID','Author','Publisher','Price','Status'],false,$sql);
     }
     else if($type=="journals"){
-        if($category=="name"){
-            $tableHeader="<table id='libjournals' class='table table-stripped table-hover'>
+
+        $tableHeader="<table id='libjournals' class='table table-stripped table-hover'>
                                     <thead>
+                                         <th>ID</th>
                                          <th>Name</th>
                                          <th>Title</th>
                                          <th>Authors</th>
@@ -37,20 +38,22 @@ if(isset($_GET['type'])&&isset($_GET['category'])&&isset($_GET['keyword'])){
                                          <th>Impact Factor</th>                                                             
                                          <th>PDF</th>
                                     </thead>";
-            $tableFooter="<tfoot>                                  
-                            <th>Name</th>
-                            <th>Title</th>
-                            <th>Authors</th>
-                            <th>Month</th> 
-                            <th>Acadamic Year</th>
-                            <th>Issue</th>
-                            <th>Volume</th>                                    
-                            <th>Impact Factor</th>                                    
-                            <th>PDF</th>
-                            </tfoot>
-                        </table>";
+        $tableFooter="<tfoot>                       
+                        <th>ID</th>           
+                        <th>Name</th>
+                        <th>Title</th>
+                        <th>Authors</th>
+                        <th>Month</th> 
+                        <th>Acadamic Year</th>
+                        <th>Issue</th>
+                        <th>Volume</th>                                    
+                        <th>Impact Factor</th>                                    
+                        <th>PDF</th>
+                        </tfoot>
+                    </table>";
 
-            $tableBody="<tbody>";
+        $tableBody="<tbody>";
+        if($category=="name"){
             $sql="SELECT * FROM libjournals WHERE journalname LIKE '$_GET[keyword]%' OR journaltitle LIKE '%$_GET[keyword]%' OR month = '$_GET[keyword]' OR year_from = '$_GET[keyword]' OR year_to = '$_GET[keyword]'";
             if($result=mysql_query($sql)){
                 if(mysql_num_rows($result)>0){
@@ -69,6 +72,7 @@ if(isset($_GET['type'])&&isset($_GET['category'])&&isset($_GET['keyword'])){
                                         </div>
                                     </div>";
                         $tableBody.="<tr class='libjournals-row'>
+                                        <td>$journal[id]</td>
                                         <td>$journal[journalname]</td>
                                         <td>$journal[journaltitle]</td>
                                         <td>$journalAuthors</td>
@@ -86,32 +90,6 @@ if(isset($_GET['type'])&&isset($_GET['category'])&&isset($_GET['keyword'])){
             }
         }
         else if($category=="author"){
-            $tableHeader="<table id='libjournals' class='table table-stripped table-hover'>
-                                    <thead>
-                                         <th>Name</th>
-                                         <th>Title</th>
-                                         <th>Authors</th>
-                                         <th>Month</th>
-                                         <th>Acadamic Year</th>
-                                         <th>Issue</th>
-                                         <th>Volume</th>
-                                         <th>Impact Factor</th>                                                             
-                                         <th>PDF</th>
-                                    </thead>";
-            $tableFooter="<tfoot>                                  
-                            <th>Name</th>
-                            <th>Title</th>
-                            <th>Authors</th>
-                            <th>Month</th> 
-                            <th>Acadamic Year</th>
-                            <th>Issue</th>
-                            <th>Volume</th>                                    
-                            <th>Impact Factor</th>                                    
-                            <th>PDF</th>
-                            </tfoot>
-                        </table>";
-
-            $tableBody="<tbody>";
             $sql="SELECT * FROM libusers WHERE username LIKE '$_GET[keyword]%'";
             $condition="";            
             if($authors=mysql_query($sql)){
@@ -143,6 +121,7 @@ if(isset($_GET['type'])&&isset($_GET['category'])&&isset($_GET['keyword'])){
                                                 </div>
                                             </div>";
                                 $tableBody.="<tr class='libjournals-row'>
+                                                <td>$journal[id]</td>
                                                 <td>$journal[journalname]</td>
                                                 <td>$journal[journaltitle]</td>
                                                 <td>$journalAuthors</td>
@@ -159,6 +138,42 @@ if(isset($_GET['type'])&&isset($_GET['category'])&&isset($_GET['keyword'])){
                         }   
                     }
                 }
+            }
+        }
+        else if($category=="id"){
+            $sql="SELECT * FROM libjournals WHERE id LIKE '$_GET[keyword]%'";
+            if($result=mysql_query($sql)){
+                if(mysql_num_rows($result)>0){
+                    while($journal=mysql_fetch_assoc($result)){
+                        $journalAuthors=[];
+                        $sql="SELECT u.username FROM journal_authors j JOIN libusers u ON j.userid=u.id AND j.journalid='$journal[id]'";
+                        if($author_result=mysql_query($sql)){
+                            while($author=mysql_fetch_assoc($author_result)){
+                                array_push($journalAuthors,$author['username']);
+                            }
+                            $journalAuthors=implode(",",$journalAuthors);
+                        }
+                        $pdfButton="<div class='input-group'>
+                                        <div class='input-group-btn'>
+                                            <a href='scripts/php/journals/pdf/$journal[id].pdf' target='_blank' class='btn btn-primary'><span class='glyphicon glyphicon-eye-open'></span></a>
+                                        </div>
+                                    </div>";
+                        $tableBody.="<tr class='libjournals-row'>
+                                        <td>$journal[id]</td>
+                                        <td>$journal[journalname]</td>
+                                        <td>$journal[journaltitle]</td>
+                                        <td>$journalAuthors</td>
+                                        <td>$journal[month]</td>
+                                        <td>$journal[year_from]-$journal[year_to]</td>
+                                        <td>$journal[issue]</td>
+                                        <td>$journal[volume]</td>
+                                        <td>$journal[impactfactor]</td>
+                                        <td>$pdfButton</td>
+                                        </tr>";
+                    }
+                    $tableBody.="</tbody>";
+                    $html=$tableHeader.$tableBody.$tableFooter;  
+                }                      
             }
         }
     }

@@ -14,6 +14,7 @@ $(function () {
     var formBooksReturn = $("#form-books-return");
     var formAdminsChangePassword = $("#form-admins-change-password");
     var formJournalsUpdatePDF = $("#form-journals-update-pdf");
+    var formJorunalsDownload = $("#form-journals-download");
 
     var fileUsersCSV = $("#file-users-csv");
     var fileBooksCSV = $("#file-books-csv");
@@ -60,6 +61,7 @@ $(function () {
     var btnJournalsSelectAll = $("#btn-journals-selectall");
     var btnJournalsInvert = $("#btn-journals-invert");
     var btnJournalsBrowseUpdatePDF = $("#btn-journals-browse-update-pdf");
+    var btnJournalsDownload = $("#btn-journals-download");
 
     var modalUsersUpdate = $("#modal-users-update");
     var modalBooksUpdate = $("#modal-books-update");
@@ -93,6 +95,7 @@ $(function () {
     formJournalsUpdate.ajaxForm();
     formJournalsUpdatePDF.ajaxForm();
     formUsersCSV.ajaxForm();
+    formJorunalsDownload.ajaxForm();
 
     formBooksCSV.ajaxForm();
     formBooksIssue.ajaxForm();
@@ -249,6 +252,20 @@ $(function () {
     });
     btnJournalsPDF.on('click', function (evt) {
         fileJournalsPDF.trigger('click');
+    });
+    btnJournalsDownload.on('click',function(evt){
+        formJorunalsDownload.ajaxSubmit({
+            success:function(response){
+                response=jQuery.parseJSON(response);
+                $.growl(response);
+                if(!response.error){
+                    window.open('scripts/php/journals/download.php?filename='+response.filename,'_self');
+                }
+            },
+            error:function(){
+                $.growl(ajaxError);
+            }
+        });
     });
 
     fileUsersCSV.on('change', function (evt) {
